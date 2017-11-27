@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.talk">
-    <uses-permission android:name='android.permission.INTERNET'>
-    </uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +21,12 @@
         </activity>
         <activity android:name=".SignupActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".chat.MessageActivity"></activity>
+        <activity android:name=".chat.MessageActivity" />
+        <activity android:name=".fragment.HomeFragement" />
+        <activity android:name=".fragment.HomeFragment" />
+        <activity android:name=".fragment.CategoryFragment" />
+        <activity android:name=".fragment.MypageFragment" />
+        <activity android:name=".fragment.WriteFragment"></activity>
     </application>
 
 </manifest>

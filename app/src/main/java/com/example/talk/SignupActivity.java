@@ -63,6 +63,8 @@ public class SignupActivity extends AppCompatActivity {
                     return;
                 }
 
+                //Toast.makeText(SignupActivity.this,"tt",Toast.LENGTH_SHORT).show();
+
                 FirebaseAuth.getInstance()
                         .createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
