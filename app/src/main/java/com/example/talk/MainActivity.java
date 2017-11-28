@@ -1,15 +1,12 @@
 package com.example.talk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.example.talk.fragment.CategoryFragment;
-import com.example.talk.fragment.ChatFragment;
-import com.example.talk.fragment.HomeFragment;
-import com.example.talk.fragment.MypageFragment;
 import com.example.talk.fragment.PeopleFragment;
 import com.example.talk.fragment.WriteFragment;
 
@@ -26,19 +23,21 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_home:
-                        getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new HomeFragment()).commit();
+                       // getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new HomeFragment()).commit();
                         return true;
                     case R.id.action_category:
-                        getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new CategoryFragment()).commit();
+                        //getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new CategoryFragment()).commit();
                         return true;
                     case R.id.action_write:
-                        getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new WriteFragment()).commit();
+                        Intent intent = new Intent(MainActivity.this,WriteFragment.class);
+                        startActivity(intent);
+                        //getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new WriteFragment()).commit();
                         return true;
                     case R.id.action_people_chat:
                         getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new PeopleFragment()).commit();
                         return true;
                     case R.id.action_mypage:
-                        getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new MypageFragment()).commit();
+                        //getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new MypageFragment()).commit();
                         return true;
 
                 }

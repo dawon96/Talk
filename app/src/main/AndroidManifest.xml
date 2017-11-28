@@ -22,7 +22,6 @@
         <activity android:name=".SignupActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".chat.MessageActivity" />
-        <activity android:name=".fragment.HomeFragement" />
         <activity android:name=".fragment.HomeFragment" />
         <activity android:name=".fragment.CategoryFragment" />
         <activity android:name=".fragment.MypageFragment" />
