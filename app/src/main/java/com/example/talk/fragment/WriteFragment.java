@@ -1,20 +1,22 @@
 package com.example.talk.fragment;
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.talk.R;
@@ -30,7 +32,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class WriteFragment extends AppCompatActivity {
+import static android.app.Activity.RESULT_OK;
+
+public class WriteFragment extends Fragment {
 
     private FirebaseDatabase database;
     private static final String TAG = "MainActivity";
@@ -45,10 +49,10 @@ public class WriteFragment extends AppCompatActivity {
     Button bt2;
     Button bt3;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_write);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_write,container,false);
 
 
         /*permission
@@ -56,12 +60,14 @@ public class WriteFragment extends AppCompatActivity {
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},0);
         }*/
 
-        bt1 = (Button)findViewById(R.id.bt_upload);
-        et1 = (EditText)findViewById(R.id.et_title);
-        et2 = (EditText)findViewById(R.id.et_money);
-        et3 = (EditText)findViewById(R.id.et_content);
+        RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.writefragment_relativelayout);
+
+        bt1 = (Button)view.findViewById(R.id.bt_upload);
+        et1 = (EditText)view.findViewById(R.id.et_title);
+        et2 = (EditText)view.findViewById(R.id.et_money);
+        et3 = (EditText)view.findViewById(R.id.et_content);
         //bt3 = (Button)findViewById(R.id.image_upload);
-        ivPreview = (ImageView)findViewById(R.id.img3);
+        ivPreview = (ImageView)view.findViewById(R.id.img3);
         database = FirebaseDatabase.getInstance();
         //DatabaseReference myRef = database.getReference("message");
         //myRef.setValue("hello,world");
@@ -90,9 +96,10 @@ public class WriteFragment extends AppCompatActivity {
             }
         });
 
+        return view;
     }
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //request코드가 0이고 OK를 선택했고 data에 뭔가가 들어 있다면
         if(requestCode == 0 && resultCode == RESULT_OK){
@@ -100,7 +107,7 @@ public class WriteFragment extends AppCompatActivity {
             Log.d(TAG, "uri:" + String.valueOf(filePath));
             try {
                 //Uri 파일을 Bitmap으로 만들어서 ImageView에 집어 넣는다.
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), filePath);
                 ivPreview.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -112,7 +119,7 @@ public class WriteFragment extends AppCompatActivity {
         //업로드할 파일이 있으면 수행
         if (filePath != null) {
             //업로드 진행 Dialog 보이기
-            final ProgressDialog progressDialog = new ProgressDialog(this);
+            final ProgressDialog progressDialog = new ProgressDialog(getActivity());
             progressDialog.setTitle("업로드중...");
             progressDialog.show();
 
@@ -126,7 +133,7 @@ public class WriteFragment extends AppCompatActivity {
 
             //storage 주소와 폴더 파일명을 지정해 준다.
             StorageReference storageRef = storage.getReferenceFromUrl("gs://talk-4c5a4.appspot.com").child("writings/" + filename);
-            Toast.makeText(getApplicationContext(), "upload 진행중 ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "upload 진행중 ", Toast.LENGTH_SHORT).show();
             final adapter adapter  = new adapter();
             adapter.ad_title = et1.getText().toString();
             adapter.ad_money = et2.getText().toString();
@@ -142,7 +149,7 @@ public class WriteFragment extends AppCompatActivity {
                             Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
                             progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
-                            Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "업로드 완료!", Toast.LENGTH_SHORT).show();
                             adapter.imageUrl = downloadUrl.toString();
 
                             //adapter.uid = auth.getCurrentUser().getUid();
@@ -156,7 +163,7 @@ public class WriteFragment extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(getApplicationContext(), "업로드 실패!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "업로드 실패!", Toast.LENGTH_SHORT).show();
                         }
                     })
                     //진행중
@@ -169,21 +176,8 @@ public class WriteFragment extends AppCompatActivity {
                         }
                     });
         } else {
-            Toast.makeText(getApplicationContext(), "사진 파일을 먼저 선택하세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "사진 파일을 먼저 선택하세요.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public String getPath(Uri uri){
-
-        String [] proj = {MediaStore.Images.Media.DATA};
-        CursorLoader cursorLoader = new CursorLoader(this,uri,proj,null,null,null);
-
-        Cursor cursor = cursorLoader.loadInBackground();
-        int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-
-        cursor.moveToFirst();
-
-        return cursor.getString(index);
-
-    }
 }

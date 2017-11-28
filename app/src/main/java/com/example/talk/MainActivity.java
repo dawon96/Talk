@@ -1,6 +1,5 @@
 package com.example.talk;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -29,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
                         //getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new CategoryFragment()).commit();
                         return true;
                     case R.id.action_write:
-                        Intent intent = new Intent(MainActivity.this,WriteFragment.class);
-                        startActivity(intent);
-                        //getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new WriteFragment()).commit();
+                        //Intent intent = new Intent(MainActivity.this,WriteFragment.class);
+                        //startActivity(intent);
+                        getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new WriteFragment()).commit();
                         return true;
                     case R.id.action_people_chat:
                         getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment()).commit();
