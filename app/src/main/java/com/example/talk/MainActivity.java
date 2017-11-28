@@ -7,7 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.example.talk.fragment.PeopleFragment;
+import com.example.talk.fragment.ChatFragment;
 import com.example.talk.fragment.WriteFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                         //getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new WriteFragment()).commit();
                         return true;
                     case R.id.action_people_chat:
-                        getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new PeopleFragment()).commit();
+                        getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment()).commit();
                         return true;
                     case R.id.action_mypage:
                         //getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new MypageFragment()).commit();

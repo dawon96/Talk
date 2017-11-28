@@ -125,7 +125,7 @@ public class WriteFragment extends AppCompatActivity {
             String filename = formatter.format(now) + ".png";
 
             //storage 주소와 폴더 파일명을 지정해 준다.
-            StorageReference storageRef = storage.getReferenceFromUrl("gs://fir-test-c6421.appspot.com").child("images/" + filename);
+            StorageReference storageRef = storage.getReferenceFromUrl("gs://talk-4c5a4.appspot.com").child("writings/" + filename);
             Toast.makeText(getApplicationContext(), "upload 진행중 ", Toast.LENGTH_SHORT).show();
             final adapter adapter  = new adapter();
             adapter.ad_title = et1.getText().toString();
@@ -148,7 +148,7 @@ public class WriteFragment extends AppCompatActivity {
                             //adapter.uid = auth.getCurrentUser().getUid();
                             //adapter.userId = auth.getCurrentUser().getEmail();
 
-                            database.getReference().child("users").push().setValue(adapter);
+                            database.getReference().child("writings").push().setValue(adapter);
                         }
                     })
                     //실패시
