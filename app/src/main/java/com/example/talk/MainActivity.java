@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.talk.fragment.ChatFragment;
+import com.example.talk.fragment.HomeFragment;
 import com.example.talk.fragment.WriteFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_home:
-                       // getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new HomeFragment()).commit();
+                        getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new HomeFragment()).commit();
                         return true;
                     case R.id.action_category:
                         //getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new CategoryFragment()).commit();
@@ -38,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_mypage:
                         //getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new MypageFragment()).commit();
                         return true;
-
                 }
-
                 return false;
             }
         });

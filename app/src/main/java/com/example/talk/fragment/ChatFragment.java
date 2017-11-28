@@ -51,8 +51,8 @@ public class ChatFragment extends Fragment {
         RecyclerView recyclerView  = (RecyclerView) view.findViewById(R.id.chatfragment_recyclerview);
         recyclerView.setAdapter(new ChatRecyclerViewAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
-
         return view;
+
     }
 
 
@@ -159,10 +159,6 @@ public class ChatFragment extends Fragment {
             long unixTime = (long) chatModels.get(position).comments.get(lastMessageKey).timestamp;
             Date date = new Date(unixTime);
             customViewHolder.textView_timestamp.setText(simpleDateFormat.format(date));
-
-
-
-
 
 
         }
