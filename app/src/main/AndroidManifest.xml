@@ -27,7 +27,7 @@
         <activity android:name=".fragment.MypageFragment" />
         <activity android:name=".fragment.WriteFragment" />
         <activity android:name=".fragment.ReadingFragment"/>
-        <activity android:name=".Reading_category">
+        <activity android:name=".fragment.Reading_category">
 
         </activity>
 

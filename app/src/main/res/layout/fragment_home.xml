@@ -8,14 +8,15 @@
     android:background="#dadada"
     android:orientation="vertical"
     >
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint=" 검색 바"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:background="#ffffff"
-        />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=" 검색 바"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:background="#ffffff"
+            />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

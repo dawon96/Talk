@@ -27,9 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by myeongsic on 2017. 9. 11..
- */
 
 public class PeopleFragment extends Fragment {
     @Nullable

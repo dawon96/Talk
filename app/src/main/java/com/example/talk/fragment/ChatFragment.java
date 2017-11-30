@@ -34,9 +34,7 @@ import java.util.Map;
 import java.util.TimeZone;
 import java.util.TreeMap;
 
-/**
- * Created by myeongsic on 2017. 10. 30..
- */
+
 
 public class ChatFragment extends Fragment {
 

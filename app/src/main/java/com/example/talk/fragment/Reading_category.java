@@ -1,11 +1,10 @@
-package com.example.talk;
+package com.example.talk.fragment;
 
+import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.talk.fragment.adapter;
+import com.example.talk.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,7 +28,7 @@ import java.util.List;
  * Created by JiSeong Nam on 2017-11-30.
  */
 
-public class Reading_category extends AppCompatActivity {
+public class Reading_category extends Fragment {
 
     private RecyclerView recyclerView;
 
@@ -37,22 +36,27 @@ public class Reading_category extends AppCompatActivity {
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
 
-    Intent intent;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.categorylayout);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+
+        String category_check="";
+
+        if(getArguments()!=null)
+            category_check = getArguments().getString("category");
+
+        //CategoryFragment 에서 클릭했던 카테고리 값 받아와서 category_check 에 넣어주는 부분만 만들면 댐..
+
+        View view = inflater.inflate(R.layout.categorylayout,container,false);
         database = FirebaseDatabase.getInstance();
 
-        recyclerView = (RecyclerView)findViewById(R.id.categoryfragemnt_recyclerview);
+        recyclerView = (RecyclerView)view.findViewById(R.id.categoryfragemnt_recyclerview);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
         final BoardRecyclerViewAdapter boardRecyclerViewAdapter = new BoardRecyclerViewAdapter();
         recyclerView.setAdapter(boardRecyclerViewAdapter);
 
-        intent = getIntent();
-        String category_check = intent.getStringExtra("category".toString());
 
         Query query = database.getReference().child("writings").orderByChild("ad_category").equalTo(category_check);
 
@@ -74,6 +78,8 @@ public class Reading_category extends AppCompatActivity {
 
             }
         });
+
+        return view;
     }
 
     class BoardRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -93,21 +99,21 @@ public class Reading_category extends AppCompatActivity {
             ((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder)holder).title.setText(adapters.get(position).ad_title);
             ((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder)holder).money.setText(adapters.get(position).ad_money);
             ((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder)holder).content.setText(adapters.get(position).ad_content);
-            Glide.with(getApplicationContext()).load(adapters.get(position).imageUrl).into(((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder) holder).imageView);
-/*
+            Glide.with(getActivity()).load(adapters.get(position).imageUrl).into(((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder) holder).imageView);
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    putPreferences(getApplicationContext(), "title", adapters.get(position).ad_title);
-                    putPreferences(getApplicationContext(), "money", adapters.get(position).ad_money);
-                    putPreferences(getApplicationContext(), "content", adapters.get(position).ad_content);
-                    putPreferences(getApplicationContext(), "imageUrl", adapters.get(position).imageUrl);
-                    putPreferences(getApplicationContext(), "useruid", adapters.get(position).ad_useruid);
+                    putPreferences(getActivity(), "title", adapters.get(position).ad_title);
+                    putPreferences(getActivity(), "money", adapters.get(position).ad_money);
+                    putPreferences(getActivity(), "content", adapters.get(position).ad_content);
+                    putPreferences(getActivity(), "imageUrl", adapters.get(position).imageUrl);
+                    putPreferences(getActivity(), "useruid", adapters.get(position).ad_useruid);
 
                     getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ReadingFragment()).commit();
                 }
             });
-*/
+
 
         }
 
