@@ -1,10 +1,11 @@
-package com.example.talk.fragment;
+package com.example.talk;
 
-import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,38 +15,48 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.talk.R;
+import com.example.talk.fragment.adapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by JiSeong Nam on 2017-11-30.
+ */
 
-public class HomeFragment extends Fragment{
+public class Reading_category extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
     private List<adapter> adapters = new ArrayList<>();
-
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
 
-    @Nullable
+    Intent intent;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home,container,false);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.categorylayout);
         database = FirebaseDatabase.getInstance();
 
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.homefragment_recyclerview);
+        recyclerView = (RecyclerView)findViewById(R.id.categoryfragemnt_recyclerview);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         final BoardRecyclerViewAdapter boardRecyclerViewAdapter = new BoardRecyclerViewAdapter();
         recyclerView.setAdapter(boardRecyclerViewAdapter);
 
-        database.getReference().child("writings").addValueEventListener(new ValueEventListener() {
+        intent = getIntent();
+        String category_check = intent.getStringExtra("category".toString());
+
+        Query query = database.getReference().child("writings").orderByChild("ad_category").equalTo(category_check);
+
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -63,8 +74,6 @@ public class HomeFragment extends Fragment{
 
             }
         });
-
-        return view;
     }
 
     class BoardRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -76,29 +85,29 @@ public class HomeFragment extends Fragment{
 
 
 
-            return new CustomViewHolder(view);
+            return new Reading_category.BoardRecyclerViewAdapter.CustomViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-            ((CustomViewHolder)holder).title.setText(adapters.get(position).ad_title);
-            ((CustomViewHolder)holder).money.setText(adapters.get(position).ad_money);
-            ((CustomViewHolder)holder).content.setText(adapters.get(position).ad_content);
-
-            Glide.with(getActivity()).load(adapters.get(position).imageUrl).into(((CustomViewHolder) holder).imageView);
-
+            ((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder)holder).title.setText(adapters.get(position).ad_title);
+            ((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder)holder).money.setText(adapters.get(position).ad_money);
+            ((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder)holder).content.setText(adapters.get(position).ad_content);
+            Glide.with(getApplicationContext()).load(adapters.get(position).imageUrl).into(((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder) holder).imageView);
+/*
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                   putPreferences(getActivity(), "title", adapters.get(position).ad_title);
-                   putPreferences(getActivity(), "money", adapters.get(position).ad_money);
-                   putPreferences(getActivity(), "content", adapters.get(position).ad_content);
-                   putPreferences(getActivity(), "imageUrl", adapters.get(position).imageUrl);
-                   putPreferences(getActivity(), "useruid", adapters.get(position).ad_useruid);
+                    putPreferences(getApplicationContext(), "title", adapters.get(position).ad_title);
+                    putPreferences(getApplicationContext(), "money", adapters.get(position).ad_money);
+                    putPreferences(getApplicationContext(), "content", adapters.get(position).ad_content);
+                    putPreferences(getApplicationContext(), "imageUrl", adapters.get(position).imageUrl);
+                    putPreferences(getApplicationContext(), "useruid", adapters.get(position).ad_useruid);
 
-                   getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ReadingFragment()).commit();
+                    getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ReadingFragment()).commit();
                 }
             });
+*/
 
         }
 

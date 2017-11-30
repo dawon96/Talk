@@ -23,19 +23,20 @@
             android:padding="60dp"
             android:id="@+id/img3"
             />
-
-        <TextView
+        <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tv5"
+            android:id="@+id/category"
             android:layout_below="@id/img3"
             android:text="카테고리"
-            />
+            >
+        </Spinner>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/et_title"
-            android:layout_below="@id/tv5"
+            android:layout_below="@id/category"
             android:hint="제목"
             />
 

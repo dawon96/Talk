@@ -12,10 +12,12 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +53,7 @@ public class WriteFragment extends Fragment {
     Button bt3;
     ImageView userimage;
     TextView userid;
+    Spinner spinner;
 
     @Nullable
     @Override
@@ -74,7 +77,15 @@ public class WriteFragment extends Fragment {
         ivPreview = (ImageView)view.findViewById(R.id.img3);
         database = FirebaseDatabase.getInstance();
         //DatabaseReference myRef = database.getReference("message");
-        //myRef.setValue("hello,world");
+
+
+        spinner = (Spinner) view.findViewById(R.id.category);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.category_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
 
         bt1.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -142,6 +153,7 @@ public class WriteFragment extends Fragment {
             adapter.ad_title = et1.getText().toString();
             adapter.ad_money = et2.getText().toString();
             adapter.ad_content = et3.getText().toString();
+            adapter.ad_category = spinner.getSelectedItem().toString();
 
             //upload
             storageRef.putFile(filePath)

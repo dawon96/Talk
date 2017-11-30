@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.example.talk.fragment.CategoryFragment;
 import com.example.talk.fragment.ChatFragment;
 import com.example.talk.fragment.HomeFragment;
 import com.example.talk.fragment.WriteFragment;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                         getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new HomeFragment()).commit();
                         return true;
                     case R.id.action_category:
-                        //getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new CategoryFragment()).commit();
+                        getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new CategoryFragment()).commit();
                         return true;
                     case R.id.action_write:
                         //Intent intent = new Intent(MainActivity.this,WriteFragment.class);
