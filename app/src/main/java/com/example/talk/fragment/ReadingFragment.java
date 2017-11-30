@@ -1,7 +1,9 @@
 package com.example.talk.fragment;
 
+import android.app.ActivityOptions;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.talk.R;
+import com.example.talk.chat.MessageActivity;
 import com.example.talk.model.UserModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,22 +61,42 @@ public class ReadingFragment extends Fragment {
 
         Glide.with(img).load(pref.getString("imageUrl", "")).into(img);
 
-        //Toast.makeText(getActivity(), pref.getString("useruid",""), Toast.LENGTH_SHORT).show();
 
-        FirebaseDatabase.getInstance().getReference().child("users").orderByChild("uid").equalTo(pref.getString("useruid", "")+"####").addValueEventListener(new ValueEventListener() {
-         @Override
-         public void onDataChange(DataSnapshot dataSnapshot) {
-         userModel = dataSnapshot.getValue(UserModel.class);
-         }
-         @Override
-         public void onCancelled(DatabaseError databaseError) {
-         }
-         });
+        FirebaseDatabase.getInstance().getReference().child("users").orderByChild("uid").equalTo(pref.getString("useruid", "")).addValueEventListener(new ValueEventListener() {
 
-        userName.setText(userModel.userName);
-        userEmail.setText(userModel.userEmail);
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot snapshot :dataSnapshot.getChildren()){
+
+                    userModel = snapshot.getValue(UserModel.class);
+
+                    userEmail.setText(userModel.userEmail.toString());
+                    userName.setText(userModel.userName.toString());
+
+                    Glide.with(getActivity()).load(userModel.profileImageUrl.toString()).into(user_image);
+                }
+                //Toast.makeText(getActivity(),userModel.userName.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //Toast.makeText(getActivity(),"실패", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         removeAllPreferences(getActivity());
+
+
+        bt_chatting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MessageActivity.class);
+                intent.putExtra("destinationUid",userModel.uid);
+                ActivityOptions activityOptions = null;
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
@@ -84,6 +107,5 @@ public class ReadingFragment extends Fragment {
         editor.clear();
         editor.apply();
     }
-
 
 }

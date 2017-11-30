@@ -157,9 +157,6 @@ public class WriteFragment extends Fragment {
                             adapter.imageUrl = downloadUrl.toString();
                             adapter.ad_useruid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                            //adapter.uid = auth.getCurrentUser().getUid();
-                            //adapter.userId = auth.getCurrentUser().getEmail();
-
                             database.getReference().child("writings").push().setValue(adapter);
                         }
                     })
