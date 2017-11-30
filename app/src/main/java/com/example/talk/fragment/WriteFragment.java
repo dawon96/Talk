@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +16,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.talk.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -37,7 +38,7 @@ import static android.app.Activity.RESULT_OK;
 public class WriteFragment extends Fragment {
 
     private FirebaseDatabase database;
-    private static final String TAG = "MainActivity";
+    //private static final String TAG = "MainActivity";
     private ImageView ivPreview;
     private Uri filePath;
 
@@ -48,6 +49,8 @@ public class WriteFragment extends Fragment {
     EditText et3;
     Button bt2;
     Button bt3;
+    ImageView userimage;
+    TextView userid;
 
     @Nullable
     @Override
@@ -62,6 +65,7 @@ public class WriteFragment extends Fragment {
 
         RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.writefragment_relativelayout);
 
+        userimage = (ImageView)view. findViewById(R.id.user_image);
         bt1 = (Button)view.findViewById(R.id.bt_upload);
         et1 = (EditText)view.findViewById(R.id.et_title);
         et2 = (EditText)view.findViewById(R.id.et_money);
@@ -104,7 +108,7 @@ public class WriteFragment extends Fragment {
         //request코드가 0이고 OK를 선택했고 data에 뭔가가 들어 있다면
         if(requestCode == 0 && resultCode == RESULT_OK){
             filePath = data.getData();
-            Log.d(TAG, "uri:" + String.valueOf(filePath));
+            //Log.d(TAG, "uri:" + String.valueOf(filePath));
             try {
                 //Uri 파일을 Bitmap으로 만들어서 ImageView에 집어 넣는다.
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), filePath);
@@ -151,6 +155,7 @@ public class WriteFragment extends Fragment {
                             progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
                             Toast.makeText(getActivity(), "업로드 완료!", Toast.LENGTH_SHORT).show();
                             adapter.imageUrl = downloadUrl.toString();
+                            adapter.ad_useruid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                             //adapter.uid = auth.getCurrentUser().getUid();
                             //adapter.userId = auth.getCurrentUser().getEmail();

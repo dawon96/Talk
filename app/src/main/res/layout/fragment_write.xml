@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.talk.fragment.WriteFragment"
     >
 
@@ -13,6 +14,7 @@
         android:orientation="vertical"
         android:id="@+id/writefragment_relativelayout"
         >
+
 
         <ImageView
             android:src="@drawable/ic_add_to_photos_black_24dp"
@@ -46,7 +48,7 @@
             />
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="130dp"
             android:id="@+id/et_content"
             android:layout_below="@id/et_money"
             android:hint="내용"

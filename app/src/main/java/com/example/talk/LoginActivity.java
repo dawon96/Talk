@@ -41,7 +41,15 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loginEvent();
+                if(id.getText().toString().isEmpty()){
+                    Toast.makeText(LoginActivity.this, "ID is empty!", Toast.LENGTH_SHORT).show();
+                }
+                else if(password.getText().toString().isEmpty()){
+                    Toast.makeText(LoginActivity.this, "PASSWORD is empty!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    loginEvent();
+                }
             }
         });
         signup.setOnClickListener(new View.OnClickListener() {

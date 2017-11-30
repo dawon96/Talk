@@ -9,5 +9,9 @@ public class adapter {
     public String ad_title;
     public String ad_money;
     public String ad_content;
-    public String ad_userid;
+
+    public String ad_userImageUrl;
+    public String ad_useruid;
+
+
 }
