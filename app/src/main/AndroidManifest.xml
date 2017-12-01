@@ -27,6 +27,7 @@
         <activity android:name=".fragment.MypageFragment" />
         <activity android:name=".fragment.WriteFragment" />
         <activity android:name=".fragment.ReadingFragment"/>
+        <activity android:name=".fragment.Reading_search"/>
         <activity android:name=".fragment.Reading_category">
 
         </activity>
