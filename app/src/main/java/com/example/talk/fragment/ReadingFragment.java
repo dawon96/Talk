@@ -36,6 +36,7 @@ public class ReadingFragment extends Fragment {
     Button bt_money;
     Button bt_chatting;
     UserModel userModel;
+    TextView tv_category;
 
     @Nullable
     @Override
@@ -52,12 +53,14 @@ public class ReadingFragment extends Fragment {
         tv_content = (TextView) view.findViewById(R.id.tv_content);
         bt_money = (Button) view.findViewById(R.id.bt_money);
         bt_chatting = (Button) view.findViewById(R.id.bt_chatting);
+        tv_category = (TextView)view.findViewById(R.id.tv_category);
 
         SharedPreferences pref = getActivity().getSharedPreferences("adapter", getActivity().MODE_PRIVATE);
 
         tv_title.setText(pref.getString("title", ""));
         bt_money.setText(pref.getString("money", ""));
         tv_content.setText(pref.getString("content", ""));
+        tv_category.setText(pref.getString("category",""));
 
         Glide.with(img).load(pref.getString("imageUrl", "")).into(img);
 

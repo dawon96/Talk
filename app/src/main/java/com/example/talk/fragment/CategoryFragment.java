@@ -1,6 +1,8 @@
 package com.example.talk.fragment;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -52,42 +54,43 @@ public class CategoryFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
-            Fragment fragment = new CategoryFragment();
-            Bundle bundle = new Bundle();
-
             switch(v.getId()){
                 case R.id.ct1:
-                    bundle.putString("category", ct1.getText().toString());
+                    putPreferences(getActivity(), "category", ct1.getText().toString());
                     break;
                 case R.id.ct2:
-                    bundle.putString("category", ct2.getText().toString());
+                    putPreferences(getActivity(), "category", ct2.getText().toString());
                     break;
                 case R.id.ct3:
-                    bundle.putString("category", ct3.getText().toString());
+                    putPreferences(getActivity(), "category", ct3.getText().toString());
                     break;
                 case R.id.ct4:
-                    bundle.putString("category", ct4.getText().toString());
+                    putPreferences(getActivity(), "category", ct4.getText().toString());
                     break;
                 case R.id.ct5:
-                    bundle.putString("category", ct5.getText().toString());
+                    putPreferences(getActivity(), "category", ct5.getText().toString());
                     break;
                 case R.id.ct6:
-                    bundle.putString("category", ct6.getText().toString());
+                    putPreferences(getActivity(), "category", ct6.getText().toString());
                     break;
                 case R.id.ct7:
-                    bundle.putString("category", ct7.getText().toString());
+                    putPreferences(getActivity(), "category", ct7.getText().toString());
                     break;
                 case R.id.ct8:
-                    bundle.putString("category", ct8.getText().toString());
+                    putPreferences(getActivity(), "category", ct8.getText().toString());
                     break;
             }
-            //찾아보니 fragment 간 데이터전달에는 intent말고 bundle 써야한대서 해봤는데 안되네요..
-            fragment.setArguments(bundle);
 
             getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new Reading_category()).commit();
 
-
         }
     };
+
+    private void putPreferences(Context context, String key, String value) {
+        SharedPreferences pref = context.getSharedPreferences("category", context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString(key, value);
+        editor.apply();
+    }
 
 }

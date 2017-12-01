@@ -95,6 +95,7 @@ public class HomeFragment extends Fragment{
                    putPreferences(getActivity(), "content", adapters.get(position).ad_content);
                    putPreferences(getActivity(), "imageUrl", adapters.get(position).imageUrl);
                    putPreferences(getActivity(), "useruid", adapters.get(position).ad_useruid);
+                   putPreferences(getActivity(), "category", adapters.get(position).ad_category);
 
                    getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ReadingFragment()).commit();
                 }

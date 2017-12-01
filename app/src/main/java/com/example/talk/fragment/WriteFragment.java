@@ -75,6 +75,7 @@ public class WriteFragment extends Fragment {
         et3 = (EditText)view.findViewById(R.id.et_content);
         //bt3 = (Button)findViewById(R.id.image_upload);
         ivPreview = (ImageView)view.findViewById(R.id.img3);
+
         database = FirebaseDatabase.getInstance();
         //DatabaseReference myRef = database.getReference("message");
 

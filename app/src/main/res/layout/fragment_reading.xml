@@ -10,9 +10,15 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="35dp"
+        android:id="@+id/tv_category"
+        android:hint="category"
+        android:layout_marginTop="30dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
         android:id="@+id/tv_title"
         android:hint="제목"
-        android:layout_marginTop="30dp"
         />
     <LinearLayout
         android:layout_width="match_parent"

@@ -41,12 +41,10 @@ public class Reading_category extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        String category_check="";
+        SharedPreferences pref = getActivity().getSharedPreferences("category", getActivity().MODE_PRIVATE);
+        String category_check = pref.getString("category", "");
 
-        if(getArguments()!=null)
-            category_check = getArguments().getString("category");
-
-        //CategoryFragment 에서 클릭했던 카테고리 값 받아와서 category_check 에 넣어주는 부분만 만들면 댐..
+        removeAllPreferences(getActivity());
 
         View view = inflater.inflate(R.layout.categorylayout,container,false);
         database = FirebaseDatabase.getInstance();
@@ -109,6 +107,7 @@ public class Reading_category extends Fragment {
                     putPreferences(getActivity(), "content", adapters.get(position).ad_content);
                     putPreferences(getActivity(), "imageUrl", adapters.get(position).imageUrl);
                     putPreferences(getActivity(), "useruid", adapters.get(position).ad_useruid);
+                    putPreferences(getActivity(), "category", adapters.get(position).ad_category);
 
                     getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ReadingFragment()).commit();
                 }
@@ -143,6 +142,13 @@ public class Reading_category extends Fragment {
         SharedPreferences pref = context.getSharedPreferences("adapter", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(key, value);
+        editor.apply();
+    }
+
+    private void removeAllPreferences(Context context) {
+        SharedPreferences pref = context.getSharedPreferences("category", context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.clear();
         editor.apply();
     }
 
