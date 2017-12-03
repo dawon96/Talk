@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,15 +35,14 @@ public class Reading_search extends Fragment {
     private List<adapter> adapters = new ArrayList<>();
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
-
+    private String searchstr;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         SharedPreferences pref = getActivity().getSharedPreferences("search",getActivity().MODE_PRIVATE);
-        String searchstr = pref.getString("search", "");
-
+        searchstr = pref.getString("search", "");
         removeAllPreferences(getActivity());
 
         View view = inflater.inflate(R.layout.searchlayout,container,false);
@@ -56,12 +54,8 @@ public class Reading_search extends Fragment {
         final BoardRecyclerViewAdapter boardRecyclerViewAdapter = new BoardRecyclerViewAdapter();
         recyclerView.setAdapter(boardRecyclerViewAdapter);
 
-
         Query query = database.getReference().child("writings").orderByChild("title");
-        String search_check = database.getReference().child("writings").orderByChild("title").toString();
-        Log.w(getActivity().getClass().getName(),"search_check : "+search_check);
-        Log.w(getActivity().getClass().getName(),"searchstr : "+searchstr);
-        if(search_check.contains(searchstr)) {
+
             //search 조건 구성해야함.
 
             query.addValueEventListener(new ValueEventListener() {
@@ -71,7 +65,8 @@ public class Reading_search extends Fragment {
                     adapters.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         adapter adapter = snapshot.getValue(adapter.class);
-                        adapters.add(adapter);
+                        if(adapter.ad_title.contains(searchstr))
+                            adapters.add(0,adapter);
                     }
                     boardRecyclerViewAdapter.notifyDataSetChanged();
 
@@ -82,7 +77,7 @@ public class Reading_search extends Fragment {
 
                 }
             });
-        }
+
 
         return view;
     }

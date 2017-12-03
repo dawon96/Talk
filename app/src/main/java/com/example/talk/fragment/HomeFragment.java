@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +37,7 @@ public class HomeFragment extends Fragment{
 
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
-    public String searchstr;
+    private String searchstr;
 
     @Nullable
     @Override
@@ -54,7 +53,7 @@ public class HomeFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 searchstr = searchBar.getText().toString();
-                Log.i(getActivity().getClass().getName(),searchstr);
+                //Log.i(getActivity().getClass().getName(),searchstr);
                 if(!searchstr.equals("")){
                     putPreferences(getActivity(),"search",searchstr,1);
 
