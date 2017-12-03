@@ -78,11 +78,10 @@ public class HomeFragment extends Fragment{
         database.getReference().child("writings").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 adapters.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     adapter adapter = snapshot.getValue(adapter.class);
-                    adapters.add(adapter);
+                    adapters.add(0,adapter);
                 }
                 boardRecyclerViewAdapter.notifyDataSetChanged();
 

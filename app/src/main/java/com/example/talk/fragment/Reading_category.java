@@ -65,7 +65,7 @@ public class Reading_category extends Fragment {
                 adapters.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     adapter adapter = snapshot.getValue(adapter.class);
-                    adapters.add(adapter);
+                    adapters.add(0,adapter);
                 }
                 boardRecyclerViewAdapter.notifyDataSetChanged();
 
