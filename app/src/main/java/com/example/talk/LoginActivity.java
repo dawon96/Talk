@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.talk.model.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button signup;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    UserModel userModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +63,21 @@ public class LoginActivity extends AppCompatActivity {
 
         //로그인 인터페이스 리스너
 
+
+
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+
                 if(user != null){
                     //로그인
+
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
                     finish();
+
+
                 }else{
                     //로그아웃
                 }
@@ -80,7 +88,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     void loginEvent() {
-
         firebaseAuth.signInWithEmailAndPassword(id.getText().toString(), password.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -92,8 +99,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-    }
 
+    }
 
     @Override
     protected void onStart() {

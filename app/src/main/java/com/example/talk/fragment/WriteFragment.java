@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -133,7 +134,7 @@ public class WriteFragment extends Fragment {
 
     private void uploadFile() {
         //업로드할 파일이 있으면 수행
-        if (filePath != null) {
+        if (filePath != null && spinner.getSelectedItemPosition()!=0) {
             //업로드 진행 Dialog 보이기
             final ProgressDialog progressDialog = new ProgressDialog(getActivity());
             progressDialog.setTitle("업로드중...");
@@ -172,6 +173,16 @@ public class WriteFragment extends Fragment {
 
 
                             database.getReference().child("writings").push().setValue(adapter);
+
+                            //글 비우는 코드
+                            et1.setText("");
+                            et2.setText("");
+                            et3.setText("");
+                            spinner.setSelection(0);
+                            Bitmap bit  = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.ic_add_to_photos_black_24dp);
+                            ivPreview.setImageBitmap(bit);
+
+
                         }
                     })
                     //실패시
@@ -191,8 +202,12 @@ public class WriteFragment extends Fragment {
                             progressDialog.setMessage("Uploaded " + ((int) progress) + "% ...");
                         }
                     });
-        } else {
-            Toast.makeText(getActivity(), "사진 파일을 먼저 선택하세요.", Toast.LENGTH_SHORT).show();
+        }
+        else if(filePath == null) {
+            Toast.makeText(getActivity(), "사진 파일을 선택하세요.", Toast.LENGTH_SHORT).show();
+        }
+        else if(spinner.getSelectedItemPosition()==0){
+            Toast.makeText(getActivity(), "카테고리를 선택하세요.", Toast.LENGTH_SHORT).show();
         }
     }
 

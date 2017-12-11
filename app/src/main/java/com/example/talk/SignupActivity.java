@@ -63,7 +63,6 @@ public class SignupActivity extends AppCompatActivity {
                     return;
                 }
 
-                //Toast.makeText(SignupActivity.this,"tt",Toast.LENGTH_SHORT).show();
 
                 FirebaseAuth.getInstance()
                         .createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
@@ -86,7 +85,9 @@ public class SignupActivity extends AppCompatActivity {
                                         FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(userModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                SignupActivity.this.finish();
+                                                Intent intent = new Intent(SignupActivity.this,LoginActivity.class);
+                                                startActivity(intent);
+                                                finish();
                                             }
                                         });
 
