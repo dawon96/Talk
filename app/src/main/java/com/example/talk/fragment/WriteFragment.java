@@ -126,6 +126,8 @@ public class WriteFragment extends Fragment {
                 //Uri 파일을 Bitmap으로 만들어서 ImageView에 집어 넣는다.
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), filePath);
                 ivPreview.setImageBitmap(bitmap);
+                ivPreview.setScaleType(ImageView.ScaleType.FIT_XY);
+                ivPreview.setPadding(5,5,5,5);
             } catch (IOException e) {
                 e.printStackTrace();
             }

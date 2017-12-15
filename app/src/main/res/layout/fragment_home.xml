@@ -24,6 +24,7 @@
             android:id="@+id/search_bar"
             android:layout_weight="1"
             android:layout_marginRight="3dp"
+            android:focusable="false"
             />
         <TextView
             android:layout_width="match_parent"

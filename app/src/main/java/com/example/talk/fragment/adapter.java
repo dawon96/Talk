@@ -12,5 +12,4 @@ public class adapter {
     public String ad_category;
 
     public String ad_useruid;
-
 }

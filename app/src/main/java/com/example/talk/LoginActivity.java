@@ -113,4 +113,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onStop();
         firebaseAuth.removeAuthStateListener(authStateListener);
     }
+
+    private long backPressedTime = 0;
+    @Override public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long interval = tempTime-backPressedTime;
+        if(0<=interval && 2000 >=interval){
+            super.onBackPressed();
+        }
+        else{
+            backPressedTime = tempTime;
+            Toast.makeText(getApplicationContext(),"'뒤로' 버튼을 한번 더 누르시면 종료합니다. ",Toast.LENGTH_LONG).show();
+        }
+    }
+
 }

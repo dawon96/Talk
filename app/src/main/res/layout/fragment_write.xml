@@ -38,6 +38,7 @@
             android:id="@+id/et_title"
             android:layout_below="@id/category"
             android:hint="제목"
+            android:padding="5dp"
             />
 
         <EditText
@@ -46,6 +47,7 @@
             android:id="@+id/et_money"
             android:layout_below="@id/et_title"
             android:hint="가격"
+            android:padding="5dp"
             />
         <EditText
             android:layout_width="match_parent"
@@ -53,6 +55,7 @@
             android:id="@+id/et_content"
             android:layout_below="@id/et_money"
             android:hint="내용"
+            android:padding="5dp"
             />
 
         <Button

@@ -36,7 +36,6 @@ public class Reading_category extends Fragment {
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

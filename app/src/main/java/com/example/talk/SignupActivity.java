@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.talk.model.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,6 +61,7 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (email.getText().toString() == null || name.getText().toString() == null || password.getText().toString() == null || imageUri == null) {
+                    Toast.makeText(getApplicationContext(), "회원 정보를 입력하세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -117,6 +119,7 @@ public class SignupActivity extends AppCompatActivity {
             try{
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),imageUri);
                 profile.setImageBitmap(bitmap);
+                profile.setScaleType(ImageView.ScaleType.FIT_XY);
             } catch (IOException e) {
                 e.printStackTrace();
             }

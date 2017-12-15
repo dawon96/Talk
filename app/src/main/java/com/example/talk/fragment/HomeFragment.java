@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +31,7 @@ public class HomeFragment extends Fragment{
     private RecyclerView recyclerView;
 
 
-    public TextView searchBar;
+    public EditText searchBar;
     public TextView searchButton;
 
     private List<adapter> adapters = new ArrayList<>();
@@ -45,9 +46,16 @@ public class HomeFragment extends Fragment{
 
         View view = inflater.inflate(R.layout.fragment_home,container,false);
 
-        searchBar = (TextView) view.findViewById(R.id.search_bar);
+        searchBar = (EditText) view.findViewById(R.id.search_bar);
         searchButton = (TextView)view.findViewById(R.id.search_button);
 
+        searchBar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                searchBar.setFocusable(true);
+                searchBar.setFocusableInTouchMode(true);
+            }
+        });
 
         searchButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -57,7 +65,7 @@ public class HomeFragment extends Fragment{
                 if(!searchstr.equals("")){
                     putPreferences(getActivity(),"search",searchstr,1);
 
-                    getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new Reading_search()).commit();
+                    getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new Reading_search()).commit();
                 }
                 else
                 {
@@ -95,6 +103,7 @@ public class HomeFragment extends Fragment{
         return view;
     }
 
+
     class BoardRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         @Override
@@ -125,7 +134,7 @@ public class HomeFragment extends Fragment{
                    putPreferences(getActivity(), "useruid", adapters.get(position).ad_useruid);
                    putPreferences(getActivity(), "category", adapters.get(position).ad_category);
 
-                   getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ReadingFragment()).commit();
+                   getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new ReadingFragment()).commit();
                 }
             });
 
@@ -166,5 +175,6 @@ public class HomeFragment extends Fragment{
         editor.putString(key, value);
         editor.apply();
     }
+
 
 }

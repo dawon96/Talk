@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.talk.fragment.CategoryFragment;
 import com.example.talk.fragment.ChatFragment;
@@ -46,6 +47,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private long backPressedTime = 0;
+    @Override
+    public void onBackPressed() {
+
+        long tempTime = System.currentTimeMillis();
+        long interval = tempTime-backPressedTime;
+
+        if(getFragmentManager().getBackStackEntryCount()>0){
+            getFragmentManager().popBackStack();
+        }
+        else {
+            if (0 <= interval && 2000 >= interval) {
+                super.onBackPressed();
+            } else {
+                backPressedTime = tempTime;
+                Toast.makeText(getApplicationContext(), "'뒤로' 버튼을 한번 더 누르시면 종료합니다. ", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
 }

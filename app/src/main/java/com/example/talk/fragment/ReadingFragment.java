@@ -64,7 +64,6 @@ public class ReadingFragment extends Fragment {
 
         Glide.with(img).load(pref.getString("imageUrl", "")).into(img);
 
-
         FirebaseDatabase.getInstance().getReference().child("users").orderByChild("uid").equalTo(pref.getString("useruid", "")).addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -110,5 +109,6 @@ public class ReadingFragment extends Fragment {
         editor.clear();
         editor.apply();
     }
+
 
 }

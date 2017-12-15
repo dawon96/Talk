@@ -81,7 +81,7 @@ public class CategoryFragment extends Fragment {
                     break;
             }
 
-            getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new Reading_category()).commit();
+            getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new Reading_category()).commit();
 
         }
     };
