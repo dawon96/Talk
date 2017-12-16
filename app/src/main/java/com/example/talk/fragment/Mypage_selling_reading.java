@@ -1,8 +1,7 @@
 package com.example.talk.fragment;
 
-import android.app.ActivityOptions;
 import android.app.Fragment;
-import android.content.Intent;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.talk.R;
-import com.example.talk.chat.MessageActivity;
 import com.example.talk.model.UserModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,10 +28,12 @@ public class Mypage_selling_reading extends Fragment {
     TextView userEmail;
     ImageView img;
     TextView tv_content;
+    Button bt_money;
     Button bt_reset;
     UserModel userModel;
     TextView tv_category;
     TextView bt_back;
+    adapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -46,11 +46,11 @@ public class Mypage_selling_reading extends Fragment {
         img = (ImageView) view.findViewById(R.id.img);
         tv_content = (TextView) view.findViewById(R.id.tv_content);
         bt_money = (Button) view.findViewById(R.id.bt_money);
-        bt_chatting = (Button) view.findViewById(R.id.bt_chatting);
+        bt_reset = (Button) view.findViewById(R.id.bt_chatting);
         tv_category = (TextView)view.findViewById(R.id.tv_category);
         bt_back = (TextView)view.findViewById(R.id.bt_back);
 
-        SharedPreferences pref = getActivity().getSharedPreferences("adapter", getActivity().MODE_PRIVATE);
+        final SharedPreferences pref = getActivity().getSharedPreferences("adapter", getActivity().MODE_PRIVATE);
 
         tv_title.setText(pref.getString("title", ""));
         bt_money.setText(pref.getString("money", ""));
@@ -82,16 +82,28 @@ public class Mypage_selling_reading extends Fragment {
             }
         });
 
-        removeAllPreferences(getActivity());
-
-
-        bt_chatting.setOnClickListener(new View.OnClickListener() {
+        bt_reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), MessageActivity.class);
-                intent.putExtra("destinationUid",userModel.uid);
-                ActivityOptions activityOptions = null;
-                startActivity(intent);
+
+                FirebaseDatabase.getInstance().getReference().child("writings").orderByChild("imageUrl").equalTo(pref.getString("imageUrl", "")).addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        for(DataSnapshot snapshot :dataSnapshot.getChildren()){
+
+                            snapshot.getRef().setValue(null);
+                            getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new Mypage_selling()).commit();
+                        }
+                        //Toast.makeText(getActivity(),userModel.userName.toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        //Toast.makeText(getActivity(),"실패", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -101,7 +113,15 @@ public class Mypage_selling_reading extends Fragment {
                 getFragmentManager().popBackStack();
             }
         });
+        removeAllPreferences(getActivity());
 
         return view;
+    }
+
+    private void removeAllPreferences(Context context) {
+        SharedPreferences pref = context.getSharedPreferences("adapter", context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.clear();
+        editor.apply();
     }
 }
