@@ -37,6 +37,7 @@ public class Reading_category extends Fragment {
     private FirebaseDatabase database;
 
     public TextView newcategory;
+    ImageView bt_back;
 
     @Nullable
     @Override
@@ -45,10 +46,18 @@ public class Reading_category extends Fragment {
         SharedPreferences pref = getActivity().getSharedPreferences("category", getActivity().MODE_PRIVATE);
         String category_check = pref.getString("category", "");
 
-
         //removeAllPreferences(getActivity());
 
         View view = inflater.inflate(R.layout.categorylayout,container,false);
+
+
+        bt_back = (ImageView)view.findViewById(R.id.bt_back);
+        bt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().popBackStack();
+            }
+        });
 
         newcategory =(TextView) view.findViewById(R.id.newcategory);
         newcategory.setText("  카테고리 : "+category_check);

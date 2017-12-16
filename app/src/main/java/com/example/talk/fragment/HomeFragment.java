@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment{
 
 
     public EditText searchBar;
-    public TextView searchButton;
+    public ImageView searchButton;
 
     private List<adapter> adapters = new ArrayList<>();
 
@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_home,container,false);
 
         searchBar = (EditText) view.findViewById(R.id.search_bar);
-        searchButton = (TextView)view.findViewById(R.id.search_button);
+        searchButton = (ImageView)view.findViewById(R.id.search_button);
 
         searchBar.setOnClickListener(new View.OnClickListener(){
             @Override

@@ -32,7 +32,7 @@ public class ReadingFragment extends Fragment {
     TextView userEmail;
     ImageView img;
     TextView tv_content;
-    Button bt_money;
+    TextView bt_money;
     Button bt_chatting;
     UserModel userModel;
     TextView tv_category;
@@ -49,7 +49,7 @@ public class ReadingFragment extends Fragment {
         userEmail = (TextView) view.findViewById(R.id.userEmail);
         img = (ImageView) view.findViewById(R.id.img);
         tv_content = (TextView) view.findViewById(R.id.tv_content);
-        bt_money = (Button) view.findViewById(R.id.bt_money);
+        bt_money = (TextView) view.findViewById(R.id.bt_money);
         bt_chatting = (Button) view.findViewById(R.id.bt_chatting);
         tv_category = (TextView)view.findViewById(R.id.tv_category);
         bt_back = (ImageView)view.findViewById(R.id.bt_back);

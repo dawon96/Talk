@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.talk.fragment.MypageFragment"
+    android:padding="5dp"
     >
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp"
+        >
 
         <ImageView
             android:layout_margin="10dp"
@@ -42,8 +44,14 @@
                 />
         </LinearLayout>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bbcedf"
+        android:paddingBottom="15dp"
+        />
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
@@ -52,9 +60,10 @@
         android:gravity="center"
         android:background="#bbcedf"
         android:id="@+id/tv_selling"
+        android:layout_marginHorizontal="20dp"
         />
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
@@ -63,9 +72,11 @@
         android:textColor="#000000"
         android:background="#bbcedf"
         android:id="@+id/tv_programinformation"
+        android:layout_marginHorizontal="20dp"
+
         />
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
@@ -74,10 +85,10 @@
         android:gravity="center"
         android:background="#bbcedf"
         android:id="@+id/tv_logout"
-
+        android:layout_marginHorizontal="20dp"
         />
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
@@ -86,6 +97,6 @@
         android:gravity="center"
         android:background="#bbcedf"
         android:id="@+id/tv_exit"
-
+        android:layout_marginHorizontal="20dp"
         />
 </LinearLayout>

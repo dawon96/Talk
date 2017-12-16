@@ -36,6 +36,7 @@ public class Reading_search extends Fragment {
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
     public String searchstr;
+    ImageView bt_back;
 
     public TextView newsearch;
     @Nullable
@@ -51,8 +52,14 @@ public class Reading_search extends Fragment {
 
         View view = inflater.inflate(R.layout.searchlayout,container,false);
 
+        bt_back = (ImageView)view.findViewById(R.id.bt_back);
+        bt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().popBackStack();
+            }
+        });
         newsearch =(TextView) view.findViewById(R.id.newsearch);
-
         newsearch.setText(searchtemp);
 
         database = FirebaseDatabase.getInstance();

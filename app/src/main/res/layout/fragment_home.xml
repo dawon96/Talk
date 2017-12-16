@@ -22,22 +22,25 @@
             android:background="#ecf6fa"
             android:id="@+id/search_bar"
             android:layout_weight="1"
-            android:layout_marginRight="3dp"
-            android:padding="3dp"
+            android:padding="5dp"
             android:focusable="false"
             />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="검색"
-            android:textSize="20dp"
-            android:layout_weight="6"
-            android:background="#a9caff"
+        <ImageView
+            android:src="@drawable/ic_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
             android:id="@+id/search_button"
-            android:gravity="center"
+            android:background="#ecf6fa"
             />
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bbcedf"
+        android:paddingBottom="15dp"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

@@ -32,12 +32,21 @@ import java.util.List;
 public class Mypage_selling extends Fragment {
 
     private List<adapter> adapters = new ArrayList<>();
+    ImageView bt_back;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.sellinglayout, container, false);
 
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.mypagefragemnt_recyclerview);
+
+        bt_back = (ImageView)view.findViewById(R.id.bt_back);
+        bt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().popBackStack();
+            }
+        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
         final BoardRecyclerViewAdapter boardRecyclerViewAdapter = new BoardRecyclerViewAdapter();

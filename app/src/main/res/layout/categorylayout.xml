@@ -5,19 +5,42 @@
         android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=" 카테고리"
-        android:textSize="20dp"
-        android:id="@+id/newcategory"
+        android:orientation="horizontal">
+        <ImageView
+            android:src="@drawable/ic_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:id="@+id/bt_back"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" 카테고리"
+            android:textSize="20dp"
+            android:id="@+id/newcategory"
+            android:padding="5dp"
+            />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bbcedf"
+        android:paddingBottom="15dp"
         />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/categoryfragemnt_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
+        android:padding="5dp"
         />
 
 </LinearLayout>
