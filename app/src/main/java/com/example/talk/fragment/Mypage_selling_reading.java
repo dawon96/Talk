@@ -13,12 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.example.talk.R;
 import com.example.talk.model.UserModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 
 public class Mypage_selling_reading extends Fragment {
 
@@ -33,7 +35,7 @@ public class Mypage_selling_reading extends Fragment {
     UserModel userModel;
     TextView tv_category;
     ImageView bt_back;
-    adapter adapter;
+    public RequestManager mGlide;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -50,14 +52,16 @@ public class Mypage_selling_reading extends Fragment {
         tv_category = (TextView)view.findViewById(R.id.tv_category);
         bt_back = (ImageView)view.findViewById(R.id.bt_back);
 
-        final SharedPreferences pref = getActivity().getSharedPreferences("adapter", getActivity().MODE_PRIVATE);
+        final SharedPreferences pref = getActivity().getSharedPreferences("selling", getActivity().MODE_PRIVATE);
 
         tv_title.setText(pref.getString("title", ""));
         bt_money.setText(pref.getString("money", ""));
         tv_content.setText(pref.getString("content", ""));
         tv_category.setText(pref.getString("category",""));
 
-        Glide.with(img).load(pref.getString("imageUrl", "")).into(img);
+        mGlide = Glide.with(getActivity());
+
+        mGlide.load(pref.getString("imageUrl", "")).into(img);
 
         FirebaseDatabase.getInstance().getReference().child("users").orderByChild("uid").equalTo(pref.getString("useruid", "")).addValueEventListener(new ValueEventListener() {
 
@@ -71,7 +75,7 @@ public class Mypage_selling_reading extends Fragment {
                     userEmail.setText(userModel.userEmail.toString());
                     userName.setText(userModel.userName.toString());
 
-                    Glide.with(getActivity()).load(userModel.profileImageUrl.toString()).into(user_image);
+                    mGlide.load(userModel.profileImageUrl.toString()).into(user_image);
                 }
                 //Toast.makeText(getActivity(),userModel.userName.toString(), Toast.LENGTH_SHORT).show();
             }
@@ -86,7 +90,6 @@ public class Mypage_selling_reading extends Fragment {
             @Override
             public void onClick(View view) {
 
-
             }
         });
 
@@ -97,13 +100,13 @@ public class Mypage_selling_reading extends Fragment {
             }
         });
 
-        removeAllPreferences(getActivity());
+        //removeAllPreferences(getActivity());
 
         return view;
     }
 
     private void removeAllPreferences(Context context) {
-        SharedPreferences pref = context.getSharedPreferences("adapter", context.MODE_PRIVATE);
+        SharedPreferences pref = context.getSharedPreferences("selling", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.clear();
         editor.apply();

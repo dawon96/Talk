@@ -126,7 +126,7 @@ public class Mypage_selling extends Fragment {
     }
 
     private void putPreferences(Context context, String key, String value) {
-        SharedPreferences pref = context.getSharedPreferences("adapter", context.MODE_PRIVATE);
+        SharedPreferences pref = context.getSharedPreferences("selling", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(key, value);
         editor.apply();
