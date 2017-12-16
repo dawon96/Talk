@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.example.talk.R;
 import com.example.talk.model.UserModel;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +35,7 @@ public class Mypage_selling_reading extends Fragment {
     TextView tv_category;
     ImageView bt_back;
     adapter adapter;
+    public RequestManager mGlide;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -50,7 +52,8 @@ public class Mypage_selling_reading extends Fragment {
         tv_category = (TextView)view.findViewById(R.id.tv_category);
         bt_back = (ImageView)view.findViewById(R.id.bt_back);
 
-        final SharedPreferences pref = getActivity().getSharedPreferences("adapter", getActivity().MODE_PRIVATE);
+
+        final SharedPreferences pref = getActivity().getSharedPreferences("selling", getActivity().MODE_PRIVATE);
 
         tv_title.setText(pref.getString("title", ""));
         bt_money.setText(pref.getString("money", ""));
@@ -71,7 +74,8 @@ public class Mypage_selling_reading extends Fragment {
                     userEmail.setText(userModel.userEmail.toString());
                     userName.setText(userModel.userName.toString());
 
-                    Glide.with(getActivity()).load(userModel.profileImageUrl.toString()).into(user_image);
+                    mGlide = Glide.with(getActivity());
+                   mGlide.load(userModel.profileImageUrl.toString()).into(user_image);
                 }
                 //Toast.makeText(getActivity(),userModel.userName.toString(), Toast.LENGTH_SHORT).show();
             }

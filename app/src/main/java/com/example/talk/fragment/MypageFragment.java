@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.RequestManager;
 import com.example.talk.R;
 import com.example.talk.model.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +28,7 @@ public class MypageFragment extends Fragment{
     TextView tv_logout;
     TextView tv_exit;
     UserModel userModel;
+    public RequestManager mGlide;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mypage, container, false);
@@ -51,8 +53,7 @@ public class MypageFragment extends Fragment{
 
                     tv_useremail.setText(userModel.userEmail.toString());
                     tv_userinformation.setText(userModel.userName.toString());
-
-                    //Glide.with(getActivity()).load(userModel.profileImageUrl.toString()).into(mypage_userimage);
+                    mGlide.load(userModel.profileImageUrl.toString()).into(mypage_userimage);
                 }
             }
 
