@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_home"
-        android:icon="@drawable/ic_chat_black_24dp"
+        android:icon="@drawable/home"
         android:title="Home"/>
     <item
         android:id="@+id/action_category"
-        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:icon="@drawable/category"
         android:title="Category"/>
     <item
         android:id="@+id/action_write"
-        android:icon="@drawable/ic_chat_black_24dp"
+        android:icon="@drawable/write"
         android:title="Write"/>
     <item
         android:id="@+id/action_people_chat"
-        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:icon="@drawable/chat"
         android:title="People / Chat"/>
     <item
         android:id="@+id/action_mypage"
-        android:icon="@drawable/ic_chat_black_24dp"
+        android:icon="@drawable/user"
         android:title="Mypage"/>
 
 </menu>

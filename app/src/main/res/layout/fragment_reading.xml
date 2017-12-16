@@ -43,7 +43,7 @@
 
 
     <ImageView
-        android:src="@drawable/ic_add_to_photos_black_24dp"
+        android:src="@drawable/image"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:padding="5dp"

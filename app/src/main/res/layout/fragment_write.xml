@@ -17,7 +17,7 @@
 
 
         <ImageView
-            android:src="@drawable/ic_add_to_photos_black_24dp"
+            android:src="@drawable/image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:padding="60dp"
