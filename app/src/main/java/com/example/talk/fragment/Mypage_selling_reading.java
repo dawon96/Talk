@@ -2,7 +2,6 @@ package com.example.talk.fragment;
 
 import android.app.ActivityOptions;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,8 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ReadingFragment extends Fragment {
-
+public class Mypage_selling_reading extends Fragment {
 
     TextView tv_title ;
     ImageView user_image;
@@ -32,16 +30,14 @@ public class ReadingFragment extends Fragment {
     TextView userEmail;
     ImageView img;
     TextView tv_content;
-    Button bt_money;
-    Button bt_chatting;
+    Button bt_reset;
     UserModel userModel;
     TextView tv_category;
     TextView bt_back;
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_reading, container, false);
+        View view = inflater.inflate(R.layout.selling_readinglayout, container, false);
 
         tv_title = (TextView) view.findViewById(R.id.tv_title);
         user_image = (ImageView) view.findViewById(R.id.user_image);
@@ -108,13 +104,4 @@ public class ReadingFragment extends Fragment {
 
         return view;
     }
-
-    private void removeAllPreferences(Context context) {
-        SharedPreferences pref = context.getSharedPreferences("adapter", context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.clear();
-        editor.apply();
-    }
-
-
 }
