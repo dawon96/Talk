@@ -36,7 +36,7 @@ public class ReadingFragment extends Fragment {
     Button bt_chatting;
     UserModel userModel;
     TextView tv_category;
-    TextView bt_back;
+    ImageView bt_back;
 
     @Nullable
     @Override
@@ -52,7 +52,7 @@ public class ReadingFragment extends Fragment {
         bt_money = (Button) view.findViewById(R.id.bt_money);
         bt_chatting = (Button) view.findViewById(R.id.bt_chatting);
         tv_category = (TextView)view.findViewById(R.id.tv_category);
-        bt_back = (TextView)view.findViewById(R.id.bt_back);
+        bt_back = (ImageView)view.findViewById(R.id.bt_back);
 
         SharedPreferences pref = getActivity().getSharedPreferences("adapter", getActivity().MODE_PRIVATE);
 

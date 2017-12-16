@@ -132,12 +132,6 @@ public class Mypage_selling extends Fragment {
         editor.apply();
     }
 
-    private void putPreferences(Context context, String key, String value, int a) {     // a 가 있을 경우 search 용
-        SharedPreferences pref = context.getSharedPreferences("", context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString(key, value);
-        editor.apply();
-    }
 }
 
 

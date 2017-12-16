@@ -1,7 +1,6 @@
 package com.example.talk.fragment;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.talk.R;
 import com.example.talk.model.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -54,12 +52,13 @@ public class MypageFragment extends Fragment{
                     tv_useremail.setText(userModel.userEmail.toString());
                     tv_userinformation.setText(userModel.userName.toString());
 
-                    Glide.with(getActivity()).load(userModel.profileImageUrl.toString()).into(mypage_userimage);
+                    //Glide.with(getActivity()).load(userModel.profileImageUrl.toString()).into(mypage_userimage);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
             }
         });
 
@@ -67,7 +66,6 @@ public class MypageFragment extends Fragment{
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(view.getContext(), Mypage_selling.class);
                 getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new Mypage_selling()).commit();
             }
         });

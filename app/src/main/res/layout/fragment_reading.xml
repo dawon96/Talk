@@ -10,40 +10,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/readingfragment_linearlayout"
+    android:padding="5dp"
     >
+    <ImageView
+        android:src="@drawable/ic_previous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:id="@+id/bt_back"
+        android:scaleType="fitXY"
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="뒤로가기 "
-        android:textSize="10dp"
-        android:textStyle="bold"
-        android:padding="5dp"
-        android:id="@+id/bt_back"
+        android:id="@+id/tv_category"
+        android:hint="category  "
         />
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_category"
-            android:hint="category  "
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:id="@+id/tv_title"
-            android:hint="제목"
-            android:textStyle="bold"
-            />
-    </LinearLayout>
+        android:layout_height="35dp"
+        android:id="@+id/tv_title"
+        android:hint="제목"
+        android:textStyle="bold"
+        />
 
 
     <ImageView
-        android:src="@drawable/image"
+        android:src="@drawable/ic_image"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:padding="5dp"
@@ -56,6 +50,7 @@
         android:orientation="horizontal"
         >
         <ImageView
+            android:src="@drawable/ic_image"
             android:layout_margin="10dp"
             android:id="@+id/user_image"
             android:layout_width="60dp"
@@ -81,10 +76,11 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="wrap_content"
         android:id="@+id/tv_content"
         android:padding="5dp"
         android:hint="내용"
+        android:layout_marginBottom="15dp"
         />
     <RelativeLayout
         android:layout_width="match_parent"

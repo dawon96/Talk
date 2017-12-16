@@ -43,44 +43,48 @@
         </LinearLayout>
     </LinearLayout>
     <TextView
-        android:layout_width="250dp"
-        android:layout_height="30dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="판매목록"
+        android:textColor="#000000"
         android:gravity="center"
-        android:background="#def7b8"
+        android:background="#bbcedf"
         android:id="@+id/tv_selling"
         />
     <TextView
-        android:layout_width="250dp"
-        android:layout_height="30dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="프로그램 정보"
         android:gravity="center"
-        android:background="#def7b8"
+        android:textColor="#000000"
+        android:background="#bbcedf"
         android:id="@+id/tv_programinformation"
         />
     <TextView
-        android:layout_width="250dp"
-        android:layout_height="30dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="로그아웃"
+        android:textColor="#000000"
         android:gravity="center"
-        android:background="#def7b8"
+        android:background="#bbcedf"
         android:id="@+id/tv_logout"
 
         />
     <TextView
-        android:layout_width="250dp"
-        android:layout_height="30dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="회원탈퇴"
+        android:textColor="#000000"
         android:gravity="center"
-        android:background="#def7b8"
+        android:background="#bbcedf"
         android:id="@+id/tv_exit"
 
         />

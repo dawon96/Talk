@@ -29,7 +29,6 @@
         <activity android:name=".fragment.ReadingFragment" />
         <activity android:name=".fragment.Reading_search" />
         <activity android:name=".fragment.Reading_category"></activity>
-        <activity android:name=".fragment.Mypasge_selling_reading"></activity>
     </application>
 
 </manifest>

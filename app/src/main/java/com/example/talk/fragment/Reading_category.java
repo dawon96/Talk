@@ -36,6 +36,8 @@ public class Reading_category extends Fragment {
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
 
+    public TextView newcategory;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -43,9 +45,14 @@ public class Reading_category extends Fragment {
         SharedPreferences pref = getActivity().getSharedPreferences("category", getActivity().MODE_PRIVATE);
         String category_check = pref.getString("category", "");
 
+
         //removeAllPreferences(getActivity());
 
         View view = inflater.inflate(R.layout.categorylayout,container,false);
+
+        newcategory =(TextView) view.findViewById(R.id.newcategory);
+        newcategory.setText("  카테고리 : "+category_check);
+
         database = FirebaseDatabase.getInstance();
 
         recyclerView = (RecyclerView)view.findViewById(R.id.categoryfragemnt_recyclerview);

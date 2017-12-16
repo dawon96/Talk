@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                         getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment()).commit();
                         return true;
                     case R.id.action_mypage:
+                        FragmentClear();
                         getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new MypageFragment()).commit();
                         return true;
                 }

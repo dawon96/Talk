@@ -181,9 +181,10 @@ public class WriteFragment extends Fragment {
                             et2.setText("");
                             et3.setText("");
                             spinner.setSelection(0);
-                            Bitmap bit  = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.image);
+                            Bitmap bit  = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.ic_image);
                             ivPreview.setImageBitmap(bit);
-
+                            ivPreview.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            ivPreview.setPadding(60,60,60,60);
 
                         }
                     })

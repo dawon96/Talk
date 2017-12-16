@@ -32,7 +32,7 @@ public class Mypage_selling_reading extends Fragment {
     Button bt_reset;
     UserModel userModel;
     TextView tv_category;
-    TextView bt_back;
+    ImageView bt_back;
     adapter adapter;
 
     @Override
@@ -46,9 +46,9 @@ public class Mypage_selling_reading extends Fragment {
         img = (ImageView) view.findViewById(R.id.img);
         tv_content = (TextView) view.findViewById(R.id.tv_content);
         bt_money = (Button) view.findViewById(R.id.bt_money);
-        bt_reset = (Button) view.findViewById(R.id.bt_chatting);
+        bt_reset = (Button) view.findViewById(R.id.bt_reset);
         tv_category = (TextView)view.findViewById(R.id.tv_category);
-        bt_back = (TextView)view.findViewById(R.id.bt_back);
+        bt_back = (ImageView)view.findViewById(R.id.bt_back);
 
         final SharedPreferences pref = getActivity().getSharedPreferences("adapter", getActivity().MODE_PRIVATE);
 
@@ -86,24 +86,7 @@ public class Mypage_selling_reading extends Fragment {
             @Override
             public void onClick(View view) {
 
-                FirebaseDatabase.getInstance().getReference().child("writings").orderByChild("imageUrl").equalTo(pref.getString("imageUrl", "")).addValueEventListener(new ValueEventListener() {
 
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        for(DataSnapshot snapshot :dataSnapshot.getChildren()){
-
-                            snapshot.getRef().setValue(null);
-                            getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new Mypage_selling()).commit();
-                        }
-                        //Toast.makeText(getActivity(),userModel.userName.toString(), Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        //Toast.makeText(getActivity(),"실패", Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
         });
 
@@ -113,6 +96,7 @@ public class Mypage_selling_reading extends Fragment {
                 getFragmentManager().popBackStack();
             }
         });
+
         removeAllPreferences(getActivity());
 
         return view;

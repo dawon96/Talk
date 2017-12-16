@@ -35,17 +35,26 @@ public class Reading_search extends Fragment {
     private List<adapter> adapters = new ArrayList<>();
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
-    private String searchstr;
+    public String searchstr;
 
+    public TextView newsearch;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         SharedPreferences pref = getActivity().getSharedPreferences("search",getActivity().MODE_PRIVATE);
         searchstr = pref.getString("search", "");
+
         removeAllPreferences(getActivity());
 
+        String searchtemp = (" '"+searchstr+ "' 로 검색한 결과 ");
+
         View view = inflater.inflate(R.layout.searchlayout,container,false);
+
+        newsearch =(TextView) view.findViewById(R.id.newsearch);
+
+        newsearch.setText(searchtemp);
+
         database = FirebaseDatabase.getInstance();
 
         recyclerView = (RecyclerView)view.findViewById(R.id.searchfragemnt_recyclerview);
@@ -55,9 +64,7 @@ public class Reading_search extends Fragment {
         recyclerView.setAdapter(boardRecyclerViewAdapter);
 
         Query query = database.getReference().child("writings").orderByChild("title");
-
             //search 조건 구성해야함.
-
             query.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {

@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,7 +26,9 @@ public class LoginActivity extends AppCompatActivity {
     private Button signup;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    private FirebaseDatabase database;
     UserModel userModel;
+    public String uidd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signOut();
+        database = FirebaseDatabase.getInstance();
 
         id = (EditText) findViewById(R.id.loginActivity_edittext_id);
         password = (EditText) findViewById(R.id.loginActivity_edittext_password);
@@ -63,21 +67,14 @@ public class LoginActivity extends AppCompatActivity {
 
         //로그인 인터페이스 리스너
 
-
-
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-
                 if(user != null){
-                    //로그인
-
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
                     finish();
-
-
                 }else{
                     //로그아웃
                 }
@@ -98,8 +95,6 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-
     }
 
     @Override

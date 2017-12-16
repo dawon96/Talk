@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
         android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#dadada"
+    android:background="#f1f4ff"
     >
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=" 검색"
+        android:id="@+id/newsearch"
+        android:textSize="20dp"
 
         />
 
@@ -17,7 +19,7 @@
         android:id="@+id/searchfragemnt_recyclerview"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:padding="10dp"
+        android:padding="5dp"
         />
 
 </LinearLayout>

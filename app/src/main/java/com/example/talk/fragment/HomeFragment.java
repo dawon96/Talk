@@ -39,7 +39,6 @@ public class HomeFragment extends Fragment{
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
     private String searchstr;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -64,7 +63,6 @@ public class HomeFragment extends Fragment{
                 //Log.i(getActivity().getClass().getName(),searchstr);
                 if(!searchstr.equals("")){
                     putPreferences(getActivity(),"search",searchstr,1);
-
                     getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new Reading_search()).commit();
                 }
                 else
@@ -179,6 +177,5 @@ public class HomeFragment extends Fragment{
         editor.putString(key, value);
         editor.apply();
     }
-
 
 }
