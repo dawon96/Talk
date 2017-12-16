@@ -134,7 +134,11 @@ public class HomeFragment extends Fragment{
                    putPreferences(getActivity(), "useruid", adapters.get(position).ad_useruid);
                    putPreferences(getActivity(), "category", adapters.get(position).ad_category);
 
-                   getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new ReadingFragment()).commit();
+                    getFragmentManager().
+                            beginTransaction().
+                            replace(R.id.mainactivity_framelayout,new ReadingFragment()).
+                            addToBackStack(null).
+                            commit();
                 }
             });
 

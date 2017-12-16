@@ -80,9 +80,11 @@ public class CategoryFragment extends Fragment {
                     putPreferences(getActivity(), "category", ct8.getText().toString());
                     break;
             }
-
-            getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new Reading_category()).commit();
-
+            getFragmentManager().
+                    beginTransaction().
+                    replace(R.id.mainactivity_framelayout,new Reading_category()).
+                    addToBackStack(null).
+                    commit();
         }
     };
 

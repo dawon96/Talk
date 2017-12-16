@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.mainactivity_bottomnavigationview);
+
         getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new HomeFragment()).commit();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -26,17 +27,21 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_home:
+                        FragmentClear();
                         getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new HomeFragment()).commit();
                         return true;
                     case R.id.action_category:
+                        FragmentClear();
                         getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new CategoryFragment()).commit();
                         return true;
                     case R.id.action_write:
+                        FragmentClear();
                         //Intent intent = new Intent(MainActivity.this,WriteFragment.class);
                         //startActivity(intent);
                         getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new WriteFragment()).commit();
                         return true;
                     case R.id.action_people_chat:
+                        FragmentClear();
                         getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment()).commit();
                         return true;
                     case R.id.action_mypage:
@@ -64,9 +69,19 @@ public class MainActivity extends AppCompatActivity {
                 super.onBackPressed();
             } else {
                 backPressedTime = tempTime;
-                Toast.makeText(getApplicationContext(), "'뒤로' 버튼을 한번 더 누르시면 종료합니다. ", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "'뒤로' 버튼을 한번 더 누르시면 종료합니다. ", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
+    public void FragmentClear(){
+        for(int i = 0; i < getFragmentManager().getBackStackEntryCount(); ++i) {
+            getFragmentManager().popBackStack();
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        getApplicationContext().getSharedPreferences("category", 0).edit().clear().commit();
+        super.onDestroy();
+    }
 }

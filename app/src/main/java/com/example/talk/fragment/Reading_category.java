@@ -43,7 +43,7 @@ public class Reading_category extends Fragment {
         SharedPreferences pref = getActivity().getSharedPreferences("category", getActivity().MODE_PRIVATE);
         String category_check = pref.getString("category", "");
 
-        removeAllPreferences(getActivity());
+        //removeAllPreferences(getActivity());
 
         View view = inflater.inflate(R.layout.categorylayout,container,false);
         database = FirebaseDatabase.getInstance();
@@ -85,9 +85,6 @@ public class Reading_category extends Fragment {
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_board,parent,false);
-
-
-
             return new Reading_category.BoardRecyclerViewAdapter.CustomViewHolder(view);
         }
 
@@ -108,7 +105,11 @@ public class Reading_category extends Fragment {
                     putPreferences(getActivity(), "useruid", adapters.get(position).ad_useruid);
                     putPreferences(getActivity(), "category", adapters.get(position).ad_category);
 
-                    getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ReadingFragment()).commit();
+                    getFragmentManager().
+                            beginTransaction().
+                            replace(R.id.mainactivity_framelayout,new ReadingFragment()).
+                            addToBackStack(null).
+                            commit();
                 }
             });
         }
