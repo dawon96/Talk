@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.talk.fragment.CategoryFragment;
 import com.example.talk.fragment.ChatFragment;
 import com.example.talk.fragment.HomeFragment;
+import com.example.talk.fragment.MypageFragment;
 import com.example.talk.fragment.WriteFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                         getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment()).commit();
                         return true;
                     case R.id.action_mypage:
-                        //getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new MypageFragment()).commit();
+                        getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new MypageFragment()).commit();
                         return true;
                 }
                 return false;

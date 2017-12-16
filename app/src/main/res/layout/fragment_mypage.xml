@@ -1,9 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.talk.fragment.MypageFragment">
+    android:orientation="vertical"
+    tools:context="com.example.talk.fragment.MypageFragment"
+    >
+    <LinearLayout
 
-</android.support.constraint.ConstraintLayout>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_margin="10dp"
+            android:id="@+id/mypage_userimage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/tv_useremail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:text="mial" />
+
+            <TextView
+                android:id="@+id/tv_userimformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:text="학과 / 학번"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="판매목록"
+        android:gravity="center"
+        android:background="#def7b8"
+        android:id="@+id/tv_selling"
+        />
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="프로그램 정보"
+        android:gravity="center"
+        android:background="#def7b8"
+        android:id="@+id/tv_programinformation"
+        />
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="로그아웃"
+        android:gravity="center"
+        android:background="#def7b8"
+        android:id="@+id/tv_logout"
+
+        />
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="회원탈퇴"
+        android:gravity="center"
+        android:background="#def7b8"
+        android:id="@+id/tv_exit"
+
+        />
+</LinearLayout>
