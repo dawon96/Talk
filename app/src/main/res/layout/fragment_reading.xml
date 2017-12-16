@@ -7,21 +7,44 @@
     android:orientation="vertical"
     android:id="@+id/readingfragment_linearlayout"
     >
-
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/tv_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="뒤로가기 "
+        android:textSize="10dp"
+        android:textStyle="bold"
         android:padding="5dp"
-        android:hint="category"
-        android:layout_marginTop="5dp"
+        android:id="@+id/bt_back"
         />
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/tv_title"
-        android:hint="제목"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:padding="5dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_category"
+            android:hint="category  "
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/tv_title"
+            android:hint="제목"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+
+    <ImageView
+        android:src="@drawable/ic_add_to_photos_black_24dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:padding="5dp"
+        android:id="@+id/img"
+        android:scaleType="fitXY"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,15 +74,6 @@
             android:layout_marginLeft="10dp"
             android:text="email" />
     </LinearLayout>
-
-    <ImageView
-        android:src="@drawable/ic_add_to_photos_black_24dp"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:padding="5dp"
-        android:id="@+id/img"
-        android:scaleType="fitXY"
-        />
 
     <TextView
         android:layout_width="match_parent"
