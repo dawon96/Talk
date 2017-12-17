@@ -60,7 +60,6 @@ public class HomeFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 searchstr = searchBar.getText().toString();
-                //Log.i(getActivity().getClass().getName(),searchstr);
                 if(!searchstr.equals("")){
                     putPreferences(getActivity(),"search",searchstr,1);
                     getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new Reading_search()).commit();

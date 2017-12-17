@@ -53,8 +53,8 @@ public class MessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message2);
-        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();  //채팅을 요구 하는 아아디 즉 단말기에 로그인된 UID
-        destinatonUid = getIntent().getStringExtra("destinationUid"); // 채팅을 당하는 아이디
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        destinatonUid = getIntent().getStringExtra("destinationUid");
         button = (Button) findViewById(R.id.messageActivity_button);
         editText = (EditText) findViewById(R.id.messageActivity_editText);
 
@@ -188,15 +188,12 @@ public class MessageActivity extends AppCompatActivity {
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             MessageViewHolder messageViewHolder = ((MessageViewHolder)holder);
 
-
-            //내가보낸 메세지
             if(comments.get(position).uid.equals(uid)){
                 messageViewHolder.textView_message.setText(comments.get(position).message);
                 messageViewHolder.textView_message.setBackgroundResource(R.drawable.ic_rchat);
                 messageViewHolder.linearLayout_destination.setVisibility(View.INVISIBLE);
                 messageViewHolder.textView_message.setTextSize(25);
                 messageViewHolder.linearLayout_main.setGravity(Gravity.RIGHT);
-                //상대방이 보낸 메세지
             }else {
 
                 Glide.with(holder.itemView.getContext())

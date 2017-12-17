@@ -99,7 +99,6 @@ public class ChatFragment extends Fragment {
             final CustomViewHolder customViewHolder = (CustomViewHolder)holder;
             String destinationUid = null;
 
-            // 일일 챗방에 있는 유저를 체크
             for(String user: chatModels.get(position).users.keySet()){
                 if(!user.equals(uid)){
                     destinationUid = user;
@@ -125,7 +124,6 @@ public class ChatFragment extends Fragment {
                 }
             });
 
-            //메시지를 내림 차순으로 정렬 후 마지막 메세지의 키값을 가져옴
             Map<String,ChatModel.Comment> commentMap = new TreeMap<>(Collections.reverseOrder());
             commentMap.putAll(chatModels.get(position).comments);
             String lastMessageKey = (String) commentMap.keySet().toArray()[0];

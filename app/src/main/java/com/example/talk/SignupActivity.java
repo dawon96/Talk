@@ -69,7 +69,6 @@ public class SignupActivity extends AppCompatActivity {
                     return;
                 }
 
-
                 FirebaseAuth.getInstance()
                         .createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
@@ -98,20 +97,12 @@ public class SignupActivity extends AppCompatActivity {
                                                 finish();
                                             }
                                         });
-
-
                                     }
                                 });
-
-
                             }
                         });
-
-
             }
         });
-
-
     }
 
     @Override
@@ -119,9 +110,8 @@ public class SignupActivity extends AppCompatActivity {
         super.onActivityResult(requestCode,resultCode,data);
 
         if (requestCode == PICK_FROM_ALBUM && resultCode == RESULT_OK) {
-            profile.setImageURI(data.getData()); // 가운데 뷰를 바꿈
-            imageUri = data.getData();// 이미지 경로 원본
-            //Toast.makeText(this, imageUri.toString(), Toast.LENGTH_SHORT).show();
+            profile.setImageURI(data.getData());
+            imageUri = data.getData();
             try{
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),imageUri);
                 profile.setImageBitmap(bitmap);

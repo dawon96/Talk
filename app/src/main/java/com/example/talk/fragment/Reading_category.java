@@ -151,14 +151,14 @@ public class Reading_category extends Fragment {
         }
     }
 
-    private void putPreferences(Context context, String key, String value) {    //넘기고
+    private void putPreferences(Context context, String key, String value) {
         SharedPreferences pref = context.getSharedPreferences("adapter", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(key, value);
         editor.apply();
     }
 
-    private void removeAllPreferences(Context context) {    //지우고
+    private void removeAllPreferences(Context context) {
         SharedPreferences pref = context.getSharedPreferences("category", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.clear();

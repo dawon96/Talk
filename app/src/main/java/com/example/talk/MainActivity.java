@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.action_write:
                         FragmentClear();
-                        //Intent intent = new Intent(MainActivity.this,WriteFragment.class);
-                        //startActivity(intent);
                         getFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new WriteFragment()).commit();
                         return true;
                     case R.id.action_people_chat:

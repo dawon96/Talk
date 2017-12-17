@@ -41,7 +41,6 @@ import static android.app.Activity.RESULT_OK;
 public class WriteFragment extends Fragment {
 
     private FirebaseDatabase database;
-    //private static final String TAG = "MainActivity";
     private ImageView ivPreview;
     private Uri filePath;
 
@@ -62,11 +61,6 @@ public class WriteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_write,container,false);
 
 
-        /*permission
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},0);
-        }*/
-
         RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.writefragment_relativelayout);
 
         userimage = (ImageView)view. findViewById(R.id.user_image);
@@ -74,12 +68,9 @@ public class WriteFragment extends Fragment {
         et1 = (EditText)view.findViewById(R.id.et_title);
         et2 = (EditText)view.findViewById(R.id.et_money);
         et3 = (EditText)view.findViewById(R.id.et_content);
-        //bt3 = (Button)findViewById(R.id.image_upload);
         ivPreview = (ImageView)view.findViewById(R.id.img3);
 
         database = FirebaseDatabase.getInstance();
-        //DatabaseReference myRef = database.getReference("message");
-
 
         spinner = (Spinner) view.findViewById(R.id.category);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.category_array, android.R.layout.simple_spinner_item);
@@ -98,11 +89,6 @@ public class WriteFragment extends Fragment {
         ivPreview.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //choose image file
-                /*
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-                startActivityForResult(intent,GALLERY_CODE);*/
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -115,12 +101,9 @@ public class WriteFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //request코드가 0이고 OK를 선택했고 data에 뭔가가 들어 있다면
         if(requestCode == 0 && resultCode == RESULT_OK){
             filePath = data.getData();
-            //Log.d(TAG, "uri:" + String.valueOf(filePath));
             try {
-                //Uri 파일을 Bitmap으로 만들어서 ImageView에 집어 넣는다.
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), filePath);
                 ivPreview.setImageBitmap(bitmap);
                 ivPreview.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -132,22 +115,16 @@ public class WriteFragment extends Fragment {
     }
 
     private void uploadFile() {
-        //업로드할 파일이 있으면 수행
-        if (filePath != null && spinner.getSelectedItemPosition()!=0) {
-            //업로드 진행 Dialog 보이기
-            final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+       if (filePath != null && spinner.getSelectedItemPosition()!=0) {
+           final ProgressDialog progressDialog = new ProgressDialog(getActivity());
             progressDialog.setTitle("업로드중...");
             progressDialog.show();
-
-            //storage
             FirebaseStorage storage = FirebaseStorage.getInstance();
-
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMHH_mmss");
             Date now = new Date();
             String filename = formatter.format(now) + ".png";
 
-            //storage 주소와 폴더 파일명을 지정해 준다.
             StorageReference storageRef = storage.getReferenceFromUrl("gs://talk-4c5a4.appspot.com").child("writings/" + filename);
             Toast.makeText(getActivity(), "upload 진행중 ", Toast.LENGTH_SHORT).show();
             final adapter adapter  = new adapter();

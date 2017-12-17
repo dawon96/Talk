@@ -65,8 +65,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //로그인 인터페이스 리스너
-
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
