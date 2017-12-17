@@ -25,7 +25,6 @@ public class Mypage_logout extends Fragment {
 
         tv_logout = (TextView)view.findViewById(R.id.tv_logout);
         bt_back = (ImageView) view.findViewById(R.id.bt_back);
-
         tv_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
