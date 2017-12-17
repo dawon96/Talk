@@ -32,7 +32,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="name / email" />
+                android:text="name / email"
+                android:textColor="#000000"
+                />
 
             <TextView
                 android:id="@+id/tv_major_num"
@@ -41,6 +43,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:text="학과 / 학번"
+                android:textColor="#000000"
                 />
         </LinearLayout>
     </LinearLayout>

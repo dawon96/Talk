@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.example.talk.R;
 import com.example.talk.chat.MessageActivity;
 import com.example.talk.model.UserModel;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -92,6 +93,9 @@ public class ReadingFragment extends Fragment {
         bt_chatting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(userModel.uid.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                    return;
+                }
                 Intent intent = new Intent(view.getContext(), MessageActivity.class);
                 intent.putExtra("destinationUid",userModel.uid);
                 ActivityOptions activityOptions = null;

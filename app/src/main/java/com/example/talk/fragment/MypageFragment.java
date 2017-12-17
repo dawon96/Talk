@@ -69,7 +69,7 @@ public class MypageFragment extends Fragment{
         tv_selling.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                FragmentClear();
                 getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new Mypage_selling()).commit();
             }
         });
@@ -77,10 +77,25 @@ public class MypageFragment extends Fragment{
         tv_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentClear();
                 getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new Mypage_logout()).commit();
             }
         });
 
+        tv_programinformation.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                FragmentClear();
+                getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new Mypage_programinformation()).commit();
+            }
+        });
+
         return  view;
+    }
+
+    public void FragmentClear(){
+        for(int i = 0; i < getFragmentManager().getBackStackEntryCount(); ++i) {
+            getFragmentManager().popBackStack();
+        }
     }
 }
