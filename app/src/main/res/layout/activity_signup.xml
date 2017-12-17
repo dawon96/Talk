@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.talk.SignupActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context="com.example.talk.SignupActivity"
     android:orientation="vertical"
     >
     <ImageView
@@ -26,7 +30,9 @@
             android:padding="5dp"
             />
 
-    </android.support.design.widget.TextInputLayout><android.support.design.widget.TextInputLayout
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <EditText
@@ -36,8 +42,30 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</android.support.design.widget.TextInputLayout>
+        <EditText
+            android:id="@+id/signupActivity_edittext_major"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="학과"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/signupActivity_edittext_schoolNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="학번"
+            />
+    </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -50,7 +78,6 @@
             android:hint="패스워드"
             android:inputType="textPassword"
             />
-
     </android.support.design.widget.TextInputLayout>
 
     <Button
@@ -60,3 +87,4 @@
         android:layout_height="wrap_content" />
 
 </LinearLayout>
+</ScrollView>

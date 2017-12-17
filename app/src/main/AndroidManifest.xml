@@ -28,7 +28,8 @@
         <activity android:name=".fragment.WriteFragment" />
         <activity android:name=".fragment.ReadingFragment" />
         <activity android:name=".fragment.Reading_search" />
-        <activity android:name=".fragment.Reading_category"></activity>
+        <activity android:name=".fragment.Reading_category" />
+        <activity android:name=".fragment.Mypage_logout"></activity>
     </application>
 
 </manifest>

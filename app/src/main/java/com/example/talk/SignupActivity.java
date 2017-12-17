@@ -31,6 +31,8 @@ public class SignupActivity extends AppCompatActivity {
     private EditText email;
     private EditText name;
     private EditText password;
+    private EditText schoolNum;
+    private EditText major;
     private Button signup;
     private ImageView profile;
     private Uri imageUri;
@@ -54,13 +56,15 @@ public class SignupActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.signupActivity_edittext_email);
         name = (EditText) findViewById(R.id.signupActivity_edittext_name);
         password = (EditText) findViewById(R.id.signupActivity_edittext_password);
+        major = (EditText) findViewById(R.id.signupActivity_edittext_major);
+        schoolNum = (EditText) findViewById(R.id.signupActivity_edittext_schoolNum);
         signup = (Button) findViewById(R.id.signupActivity_button_signup);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (email.getText().toString() == null || name.getText().toString() == null || password.getText().toString() == null || imageUri == null) {
+                if (email.getText().toString().isEmpty() || name.getText().toString().isEmpty() || password.getText().toString().isEmpty() || major.getText().toString().isEmpty() || schoolNum.getText().toString().isEmpty() || imageUri == null) {
                     Toast.makeText(getApplicationContext(), "회원 정보를 입력하세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -83,6 +87,8 @@ public class SignupActivity extends AppCompatActivity {
                                         userModel.profileImageUrl = imageUrl;
                                         userModel.uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                         userModel.userEmail = email.getText().toString();
+                                        userModel.major = major.getText().toString();
+                                        userModel.schoolNum = schoolNum.getText().toString();
 
                                         FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(userModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override

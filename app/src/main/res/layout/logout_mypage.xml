@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearlayout"
+        >
+        <ImageView
+            android:src="@drawable/ic_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:id="@+id/bt_back"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" 로그아웃"
+            android:textSize="20dp"
+            android:padding="5dp"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/linearlayout"
+        android:layout_marginTop="200dp"
+        android:gravity="center"
+        android:background="#bbcedf"
+        android:textColor="#000000"
+        android:text="로그아웃"
+        android:layout_marginHorizontal="30dp"
+        android:id="@+id/tv_logout"
+        />
+</RelativeLayout>

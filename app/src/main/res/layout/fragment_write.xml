@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/et_money"
             android:layout_below="@id/et_title"
-            android:hint="가격"
+            android:hint="가격(won)"
             android:padding="5dp"
             />
         <EditText

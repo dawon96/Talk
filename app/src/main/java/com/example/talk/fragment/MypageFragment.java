@@ -22,12 +22,11 @@ import com.google.firebase.database.ValueEventListener;
 public class MypageFragment extends Fragment{
 
     ImageView mypage_userimage;
-    TextView tv_useremail;
-    TextView tv_userinformation;
+    TextView tv_username_email;
+    TextView tv_major_num;
     TextView tv_selling;
     TextView tv_programinformation;
     TextView tv_logout;
-    TextView tv_exit;
     UserModel userModel;
     public RequestManager mGlide;
 
@@ -37,12 +36,11 @@ public class MypageFragment extends Fragment{
 
 
         mypage_userimage = (ImageView)view.findViewById(R.id.mypage_userimage);
-        tv_useremail = (TextView)view.findViewById(R.id.tv_useremail);
-        tv_userinformation = (TextView)view.findViewById(R.id.tv_userimformation);
+        tv_username_email = (TextView)view.findViewById(R.id.tv_username_email);
+        tv_major_num = (TextView)view.findViewById(R.id.tv_major_num);
         tv_selling =(TextView)view.findViewById(R.id.tv_selling);
         tv_programinformation = (TextView)view.findViewById(R.id.tv_programinformation);
         tv_logout = (TextView)view.findViewById(R.id.tv_logout);
-        tv_exit = (TextView)view.findViewById(R.id.tv_exit);
 
         mGlide = Glide.with(getActivity());
 
@@ -55,8 +53,8 @@ public class MypageFragment extends Fragment{
 
                     userModel = snapshot.getValue(UserModel.class);
 
-                    tv_useremail.setText(userModel.userEmail.toString());
-                    tv_userinformation.setText(userModel.userName.toString());
+                    tv_username_email.setText(userModel.userName.toString() + "   " + userModel.userEmail.toString());
+                    tv_major_num.setText(userModel.major.toString() + "   " + userModel.schoolNum.toString());
 
                     mGlide.load(userModel.profileImageUrl.toString()).into(mypage_userimage);
                 }
@@ -76,6 +74,12 @@ public class MypageFragment extends Fragment{
             }
         });
 
+        tv_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.mainactivity_framelayout,new Mypage_logout()).commit();
+            }
+        });
 
         return  view;
     }

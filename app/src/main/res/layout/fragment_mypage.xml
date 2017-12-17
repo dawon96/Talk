@@ -27,15 +27,15 @@
             android:orientation="vertical"
             >
             <TextView
-                android:id="@+id/tv_useremail"
+                android:id="@+id/tv_username_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="mial" />
+                android:text="name / email" />
 
             <TextView
-                android:id="@+id/tv_userimformation"
+                android:id="@+id/tv_major_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -85,18 +85,6 @@
         android:gravity="center"
         android:background="#bbcedf"
         android:id="@+id/tv_logout"
-        android:layout_marginHorizontal="20dp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="회원탈퇴"
-        android:textColor="#000000"
-        android:gravity="center"
-        android:background="#bbcedf"
-        android:id="@+id/tv_exit"
         android:layout_marginHorizontal="20dp"
         />
 </LinearLayout>
