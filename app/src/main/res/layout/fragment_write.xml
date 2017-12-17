@@ -33,6 +33,7 @@
             android:id="@+id/category"
             android:layout_below="@id/img3"
             android:text="카테고리"
+            android:layout_marginTop="8dp"
             >
         </Spinner>
 

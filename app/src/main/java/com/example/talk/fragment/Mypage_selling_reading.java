@@ -97,12 +97,14 @@ public class Mypage_selling_reading extends Fragment {
             @Override
             public void onClick(View view) {
 
-                FirebaseDatabase.getInstance().getReference().child("writings").orderByChild("imageUrl").equalTo(pref.getString("imageUrl", "")).addValueEventListener(new ValueEventListener() {
+                FirebaseDatabase.getInstance().getReference().child("writings").orderByChild("imageUrl")
+                        .equalTo(pref.getString("imageUrl", "")).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
                         for(DataSnapshot snapshot :dataSnapshot.getChildren()){
                             Toast.makeText(getActivity(),"삭제 완료",Toast.LENGTH_SHORT).show();
+
                             snapshot.getRef().setValue(null);
                             break;
                         }
