@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -58,7 +57,9 @@ public class Mypage_selling_reading extends Fragment {
         tv_category = (TextView)view.findViewById(R.id.tv_category);
         bt_back = (ImageView)view.findViewById(R.id.bt_back);
 
+
         final SharedPreferences pref = getActivity().getSharedPreferences("selling", getActivity().MODE_PRIVATE);
+        final adapter ad = new adapter(pref.getString("imageUrl", ""), pref.getString("title", ""), pref.getString("money", ""), pref.getString("content", ""), pref.getString("category",""), pref.getString("useruid", ""));
 
         tv_title.setText(pref.getString("title", ""));
         bt_money.setText(pref.getString("money", "") + "  won");
@@ -96,15 +97,18 @@ public class Mypage_selling_reading extends Fragment {
         bt_reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                database = FirebaseDatabase.getInstance();
+                final String imageurl = pref.getString("imageUrl","");
 
-                FirebaseDatabase.getInstance().getReference().child("writings").orderByChild("imageUrl").equalTo(pref.getString("imageUrl", "")).addValueEventListener(new ValueEventListener() {
+                database.getReference().child("writings").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
                         for(DataSnapshot snapshot :dataSnapshot.getChildren()){
-                            Toast.makeText(getActivity(),"삭제 완료",Toast.LENGTH_SHORT).show();
-                            snapshot.getRef().setValue(null);
-                            break;
+                            adapter adapter = snapshot.getValue(adapter.class);
+                            if(adapter.imageUrl.equals(ad.imageUrl) && adapter.ad_category.equals(ad.ad_category) && adapter.ad_content.equals(ad.ad_content) && adapter.ad_money.equals(ad.ad_money) && adapter.ad_title.equals(ad.ad_title) && adapter.ad_useruid.equals(ad.ad_useruid)) {
+                                snapshot.getRef().setValue(null);
+                            }
                         }
                         //Toast.makeText(getActivity(),userModel.userName.toString(), Toast.LENGTH_SHORT).show();
                     }
@@ -114,8 +118,6 @@ public class Mypage_selling_reading extends Fragment {
                         //Toast.makeText(getActivity(),"실패", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-                removeAllPreferences(getActivity());
                 getFragmentManager().popBackStack();
             }
         });

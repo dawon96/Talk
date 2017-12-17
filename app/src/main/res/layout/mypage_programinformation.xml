@@ -21,22 +21,28 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" 로그아웃"
+            android:text=" 프로그램 정보"
             android:textSize="20dp"
             android:padding="5dp"
             />
     </LinearLayout>
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/linearlayout"
-        android:layout_marginTop="200dp"
-        android:gravity="center"
-        android:background="#bbcedf"
+        android:layout_marginTop="20dp"
         android:textColor="#000000"
-        android:text="로그아웃"
-        android:layout_marginHorizontal="30dp"
-        android:id="@+id/tv_logout"
-        android:textSize="18dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tv_programinformation"
+        android:textSize="16dp"
+        android:text="동국대학교 학생들의 안전한 중고 거래를 위한 어플입니다. 믾은 이용 부탁드립니다."
+        />
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/tv_programinformation"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/elephant"
         />
 </RelativeLayout>

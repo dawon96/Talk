@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="item_money"
-                android:textColor="#ff3e21"
+                android:textColor="#ff2600"
                 android:id="@+id/item_money"
                 android:textSize="17dp"
                 android:textStyle="bold"

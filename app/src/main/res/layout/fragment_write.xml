@@ -43,6 +43,7 @@
             android:layout_below="@id/category"
             android:hint="제목"
             android:padding="5dp"
+            android:textColor="#000000"
             />
 
         <EditText
@@ -52,6 +53,7 @@
             android:layout_below="@id/et_title"
             android:hint="가격(won)"
             android:padding="5dp"
+            android:textColor="#000000"
             />
         <EditText
             android:layout_width="match_parent"
@@ -63,6 +65,7 @@
             android:padding="5dp"
             android:maxHeight="180dp"
             android:scrollbars="vertical"
+            android:textColor="#000000"
             />
 
         <Button
@@ -73,6 +76,8 @@
             android:layout_below="@+id/et_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
+            android:background="#bbcedf"
+            android:textSize="15dp"
             />
 
     </RelativeLayout>
