@@ -7,5 +7,7 @@ public class UserModel {
     public String profileImageUrl;
     public String uid;
     public String userEmail;
+    public String major;
+    public String schoolNum;
     public Boolean auth = false;
 }

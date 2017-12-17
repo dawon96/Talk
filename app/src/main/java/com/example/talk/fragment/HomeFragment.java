@@ -117,7 +117,7 @@ public class HomeFragment extends Fragment{
         @Override
         public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
             ((CustomViewHolder)holder).title.setText(adapters.get(position).ad_title);
-            ((CustomViewHolder)holder).money.setText(adapters.get(position).ad_money);
+            ((CustomViewHolder)holder).money.setText(adapters.get(position).ad_money + "  won");
             ((CustomViewHolder)holder).content.setText(adapters.get(position).ad_content);
 
             Glide.with(getActivity()).load(adapters.get(position).imageUrl).into(((CustomViewHolder) holder).imageView);

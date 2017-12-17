@@ -28,8 +28,8 @@ public class ReadingFragment extends Fragment {
 
     TextView tv_title ;
     ImageView user_image;
-    TextView userName;
-    TextView userEmail;
+    TextView userNameEmail;
+    TextView userMajor;
     ImageView img;
     TextView tv_content;
     TextView bt_money;
@@ -45,8 +45,8 @@ public class ReadingFragment extends Fragment {
 
         tv_title = (TextView) view.findViewById(R.id.tv_title);
         user_image = (ImageView) view.findViewById(R.id.user_image);
-        userName = (TextView) view.findViewById(R.id.userName);
-        userEmail = (TextView) view.findViewById(R.id.userEmail);
+        userNameEmail = (TextView) view.findViewById(R.id.userNameEmail);
+        userMajor = (TextView) view.findViewById(R.id.userMajor);
         img = (ImageView) view.findViewById(R.id.img);
         tv_content = (TextView) view.findViewById(R.id.tv_content);
         bt_money = (TextView) view.findViewById(R.id.bt_money);
@@ -57,7 +57,7 @@ public class ReadingFragment extends Fragment {
         SharedPreferences pref = getActivity().getSharedPreferences("adapter", getActivity().MODE_PRIVATE);
 
         tv_title.setText(pref.getString("title", ""));
-        bt_money.setText(pref.getString("money", ""));
+        bt_money.setText(pref.getString("money", "") + "  won");
         tv_content.setText(pref.getString("content", ""));
         tv_category.setText(pref.getString("category",""));
 
@@ -72,8 +72,8 @@ public class ReadingFragment extends Fragment {
 
                     userModel = snapshot.getValue(UserModel.class);
 
-                    userEmail.setText(userModel.userEmail.toString());
-                    userName.setText(userModel.userName.toString());
+                    userNameEmail.setText(userModel.userName.toString() + "   " + userModel.userEmail.toString());
+                    userMajor.setText(userModel.major.toString());
 
                     Glide.with(getActivity()).load(userModel.profileImageUrl.toString()).into(user_image);
                 }

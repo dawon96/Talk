@@ -107,7 +107,7 @@ public class Reading_category extends Fragment {
         @Override
         public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
             ((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder)holder).title.setText(adapters.get(position).ad_title);
-            ((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder)holder).money.setText(adapters.get(position).ad_money);
+            ((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder)holder).money.setText(adapters.get(position).ad_money + "  won");
             ((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder)holder).content.setText(adapters.get(position).ad_content);
             Glide.with(getActivity()).load(adapters.get(position).imageUrl).into(((Reading_category.BoardRecyclerViewAdapter.CustomViewHolder) holder).imageView);
 

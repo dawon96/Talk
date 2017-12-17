@@ -107,7 +107,7 @@ public class Reading_search extends Fragment {
         @Override
         public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
             ((Reading_search.BoardRecyclerViewAdapter.CustomViewHolder)holder).title.setText(adapters.get(position).ad_title);
-            ((Reading_search.BoardRecyclerViewAdapter.CustomViewHolder)holder).money.setText(adapters.get(position).ad_money);
+            ((Reading_search.BoardRecyclerViewAdapter.CustomViewHolder)holder).money.setText(adapters.get(position).ad_money + "  won");
             ((Reading_search.BoardRecyclerViewAdapter.CustomViewHolder)holder).content.setText(adapters.get(position).ad_content);
             Glide.with(getActivity()).load(adapters.get(position).imageUrl).into(((Reading_search.BoardRecyclerViewAdapter.CustomViewHolder) holder).imageView);
 
