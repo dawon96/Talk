@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         getApplicationContext().getSharedPreferences("category", 0).edit().clear().commit();
+        getApplicationContext().getSharedPreferences("selling", 0).edit().clear().commit();
         super.onDestroy();
     }
 }

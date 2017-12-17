@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -20,6 +21,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Mypage_selling_reading extends Fragment {
@@ -36,6 +40,8 @@ public class Mypage_selling_reading extends Fragment {
     TextView tv_category;
     ImageView bt_back;
     public RequestManager mGlide;
+    private List<adapter> adapters = new ArrayList<>();
+    private FirebaseDatabase database;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -63,8 +69,9 @@ public class Mypage_selling_reading extends Fragment {
 
         mGlide.load(pref.getString("imageUrl", "")).into(img);
 
-        FirebaseDatabase.getInstance().getReference().child("users").orderByChild("uid").equalTo(pref.getString("useruid", "")).addValueEventListener(new ValueEventListener() {
+        database = FirebaseDatabase.getInstance();
 
+        FirebaseDatabase.getInstance().getReference().child("users").orderByChild("uid").equalTo(pref.getString("useruid", "")).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -90,6 +97,26 @@ public class Mypage_selling_reading extends Fragment {
             @Override
             public void onClick(View view) {
 
+                FirebaseDatabase.getInstance().getReference().child("writings").orderByChild("imageUrl").equalTo(pref.getString("imageUrl", "")).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        for(DataSnapshot snapshot :dataSnapshot.getChildren()){
+                            Toast.makeText(getActivity(),"삭제 완료",Toast.LENGTH_SHORT).show();
+                            snapshot.getRef().setValue(null);
+                            break;
+                        }
+                        //Toast.makeText(getActivity(),userModel.userName.toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        //Toast.makeText(getActivity(),"실패", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                removeAllPreferences(getActivity());
+                getFragmentManager().popBackStack();
             }
         });
 

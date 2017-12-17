@@ -75,7 +75,6 @@ public class Reading_search extends Fragment {
             query.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-
                     adapters.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         adapter adapter = snapshot.getValue(adapter.class);
@@ -83,7 +82,6 @@ public class Reading_search extends Fragment {
                             adapters.add(0,adapter);
                     }
                     boardRecyclerViewAdapter.notifyDataSetChanged();
-
                 }
 
                 @Override
