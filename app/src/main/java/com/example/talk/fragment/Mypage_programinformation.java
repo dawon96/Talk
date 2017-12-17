@@ -6,19 +6,19 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.talk.R;
 
 public class Mypage_programinformation extends Fragment {
 
-    Button bt_back;
+    ImageView bt_back;
 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mypage_programinformation, container, false);
 
-        bt_back = (Button)view.findViewById(R.id.bt_back);
+        bt_back = (ImageView)view.findViewById(R.id.bt_back);
 
         bt_back.setOnClickListener(new View.OnClickListener() {
             @Override
