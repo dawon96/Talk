@@ -47,9 +47,11 @@ public class SignupActivity extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-                startActivityForResult(intent, PICK_FROM_ALBUM);
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "이미지를 선택하세요."), 0);
+
             }
         });
 
@@ -109,11 +111,10 @@ public class SignupActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
 
-        if (requestCode == PICK_FROM_ALBUM && resultCode == RESULT_OK) {
-            profile.setImageURI(data.getData());
+        if (requestCode == 0 && resultCode == RESULT_OK) {
             imageUri = data.getData();
             try{
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),imageUri);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getApplicationContext().getContentResolver(), imageUri);
                 profile.setImageBitmap(bitmap);
                 profile.setScaleType(ImageView.ScaleType.FIT_XY);
             } catch (IOException e) {

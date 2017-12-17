@@ -25,13 +25,14 @@ public class Mypage_logout extends Fragment {
 
         tv_logout = (TextView)view.findViewById(R.id.tv_logout);
         bt_back = (ImageView) view.findViewById(R.id.bt_back);
+
         tv_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
-                FragmentClear();
             }
         });
 
@@ -43,13 +44,10 @@ public class Mypage_logout extends Fragment {
         });
 
 
-
     return view;
     }
 
-    public void FragmentClear(){
-        for(int i = 0; i < getFragmentManager().getBackStackEntryCount(); ++i) {
-            getFragmentManager().popBackStack();
-        }
-    }
+
+
 }
+

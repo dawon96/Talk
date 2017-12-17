@@ -80,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
+
     }
 
     void loginEvent() {
@@ -88,8 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
-                            //로그인 실패한부분
-                            Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                           Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -119,5 +119,4 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"'뒤로' 버튼을 한번 더 누르시면 종료합니다. ",Toast.LENGTH_LONG).show();
         }
     }
-
 }
