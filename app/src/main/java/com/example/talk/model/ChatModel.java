@@ -3,10 +3,6 @@ package com.example.talk.model;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by myeongsic on 2017. 9. 25..
- */
-
 public class ChatModel {
 
 
